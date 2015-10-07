@@ -1,9 +1,15 @@
 template "/var/www" do
   source "config.properties.erb"
+  owner "root"
+  group "root"
+  mode 0644
 end
 
 template "/var/www" do
   source "log.properties.erb"
+  owner "root"
+  group "root"
+  mode 0644
 end
 
 bash "download and build package" do
