@@ -1,11 +1,11 @@
-template "/var/www" do
+template "/var/www/config.properties" do
   source "config.properties.erb"
   owner "root"
   group "root"
   mode 0644
 end
 
-template "/var/www" do
+template "/var/www/log.properties" do
   source "log.properties.erb"
   owner "root"
   group "root"
