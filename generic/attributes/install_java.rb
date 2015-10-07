@@ -6,3 +6,4 @@ default['java']['set_default'] = true
 default['java_ark']['connect_timeout'] = 1200
 default['maven']['install_java'] = false
 default['maven']['3']['version'] = '3.2.5'
+default['maven']['mavenrc']['opts'] = '-Dmaven.repo.local=$HOME/.m2/repository -Xmx384m'
