@@ -1,4 +1,4 @@
-name             'rakam'
+name             'generic'
 maintainer       'Burak Emre Kabakci'
 maintainer_email 'emrekabakci@gmail.com'
 license          'all_rights'
