@@ -27,6 +27,6 @@ bash "run program" do
   cwd "home/webapp"
   environment ({ 'HOME' => ::Dir.home("webapp"), 'USER' => "webapp" })
   code <<-EOH
-    cd /home/webapp && nohup java -Dhttp.server.address=0.0.0.0:5000 -Dlog.levels-file=log.properties -Dlog.output-file=logs/app.log -Dlog.enable-console=false -cp rakam/rakam/target/dependency/*: org.rakam.ServiceStarter config.properties &
+    cd /home/webapp/rakam && nohup java -Dhttp.server.address=0.0.0.0:5000 -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter ../config.properties &
   EOH
 end
