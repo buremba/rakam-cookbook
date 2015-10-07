@@ -4,4 +4,4 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 # default['java']['java_home'] = '/usr/lib/java/default'
 default['java']['set_default'] = true
 default['java_ark']['connect_timeout'] = 1200
-node['maven']['install_java'] = false
+default['maven']['install_java'] = false
