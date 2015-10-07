@@ -5,4 +5,4 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 default['java']['set_default'] = true
 default['java_ark']['connect_timeout'] = 1200
 default['maven']['install_java'] = false
-default['maven']['version'] = '3.2.5'
+default['maven']['3']['version'] = '3.2.5'
