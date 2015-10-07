@@ -20,8 +20,8 @@ bash "download and build package" do
   EOH
 end
 
-bash "run program" do
-  code <<-EOH
-    nohup java -Dhttp.server.address=0.0.0.0:5000 -Dlog.levels-file=log.properties -Dlog.output-file=logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter config.properties &
-  EOH
+include_recipe "rakam_ui::service"
+
+service "rakam_ui" do
+  action [ :enable, :start ]
 end
