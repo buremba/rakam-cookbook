@@ -11,5 +11,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[java8::default]
+      - recipe[generic::install_java]
     attributes:
