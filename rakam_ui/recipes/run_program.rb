@@ -1,14 +1,14 @@
-template "/var/www/config.properties" do
+template "/home/webapp/config.properties" do
   source "config.properties.erb"
-  owner "root"
-  group "root"
+  owner "webapp"
+  group "webapp"
   mode 0644
 end
 
-template "/var/www/log.properties" do
+template "/home/webapp/log.properties" do
   source "log.properties.erb"
-  owner "root"
-  group "root"
+  owner "webapp"
+  group "webapp"
   mode 0644
 end
 
