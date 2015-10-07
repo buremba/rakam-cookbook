@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  cookbook_files_glob: "**/*"
 
 platforms:
   - name: ubuntu-12.04
