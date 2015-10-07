@@ -16,7 +16,7 @@ bash "download and build package" do
   user "webapp"
   cwd "home/webapp"
   code <<-EOH
-    cd /var/www
+    su webapp
     git clone git@github.com:buremba/rakam.git
     cd rakam && mvn clean install -DskipTests -Pbundled-with-ui -Pmove-package-to-dependency
   EOH
