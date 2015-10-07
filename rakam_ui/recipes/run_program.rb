@@ -1,5 +1,7 @@
 bash "install-codedeploy-agent" do
   code <<-EOH
-    #{Chef::Config[:file_cache_path]}/codedeploy-agent-install auto
+    cd /var/www
+    git clone git@github.com:buremba/rakam.git
+    cd rakam && mvn clean install -DskipTests -Pbundled-with-ui -Pmove-package-to-dependency
   EOH
 end
