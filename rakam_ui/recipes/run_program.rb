@@ -13,7 +13,7 @@ template "/var/www/log.properties" do
 end
 
 bash "download and build package" do
-  user webapp
+  user "webapp"
   cwd "home/webapp"
   code <<-EOH
     cd /var/www
