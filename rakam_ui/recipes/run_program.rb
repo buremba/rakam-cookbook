@@ -17,7 +17,7 @@ bash "download and build package" do
   cwd "home/webapp"
   environment ({ 'HOME' => ::Dir.home("webapp"), 'USER' => "webapp" })
   code <<-EOH
-    git clone git@github.com:buremba/rakam.git
+    git clone https://github.com/buremba/rakam.git
     cd rakam && mvn clean install -DskipTests -Pbundled-with-ui -Pmove-package-to-dependency
   EOH
 end
