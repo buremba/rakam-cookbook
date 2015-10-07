@@ -6,3 +6,7 @@
 
 include_recipe 'java::oracle'
 include_recipe 'maven'
+
+user 'webapp' do
+  comment 'Operation user'
+end
