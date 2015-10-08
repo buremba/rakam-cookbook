@@ -8,7 +8,6 @@ include_recipe 'java::oracle'
 include_recipe 'maven'
 
 user 'webapp' do
-  gid "webapp"
   comment 'Operation user'
   home '/home/webapp'
 end
