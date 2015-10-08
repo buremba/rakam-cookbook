@@ -15,7 +15,6 @@ end
 include_recipe "nodejs::npm"
 
 bash "download and build package" do
-  environment ({ 'HOME' => ::Dir.home("webapp"), 'USER' => "webapp" })
   code <<-EOH
     su webapp
     cd /home/webapp
@@ -27,10 +26,9 @@ bash "download and build package" do
 end
 
 bash "run program" do
-  user "webapp"
-  cwd "home/webapp"
-  environment ({ 'HOME' => ::Dir.home("webapp"), 'USER' => "webapp" })
   code <<-EOH
+    su webapp
+    cd /home/webapp
     cd /home/webapp/rakam && nohup java -Dhttp.server.address=0.0.0.0:5000 -Dui.directory=../rakam-ui -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter ../config.properties &
   EOH
 end
