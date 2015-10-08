@@ -7,7 +7,8 @@
 include_recipe 'java::oracle'
 include_recipe 'maven'
 
-user 'webapp' do
-  comment 'Operation user'
-  home '/home/webapp'
+bash "create application user" do
+  code <<-EOH
+    adduser --system --shell /bin/bash --group --disabled-password --home /home/webapp webapp
+  EOH
 end
