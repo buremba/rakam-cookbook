@@ -33,6 +33,6 @@ end
 bash "run program" do
   code <<-EOH
     cd /home/webapp/rakam
-    su webapp -l -c 'nohup java -Dhttp.server.address=0.0.0.0:5000 -Dui.directory=../rakam-ui -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter ../config.properties &'
+    su webapp -l -c 'nohup java -Dhttp.server.address=0.0.0.0:5000 -Dui.directory=../rakam-ui/app -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter ../config.properties &'
   EOH
 end
