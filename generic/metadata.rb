@@ -6,4 +6,4 @@ description      'Rakam Cluster Cookbook'
 version          '0.1.0'
 
 depends 'java'
-depends 'maven'
+depends 'ark',  '~> 0.4'
