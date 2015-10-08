@@ -15,10 +15,10 @@ end
 include_recipe "nodejs::npm"
 
 bash "download and build package" do
-  user "webapp"
-  cwd "home/webapp"
   environment ({ 'HOME' => ::Dir.home("webapp"), 'USER' => "webapp" })
   code <<-EOH
+    su webapp
+    cd /home/webapp
     if cd rakam; then git pull; else git clone https://github.com/buremba/rakam.git && cd rakam; fi
     mvn clean install -DskipTests -Pmove-package-to-dependency
     if cd rakam-ui; then git pull; else git clone https://github.com/buremba/rakam-ui.git && cd rakam-ui; fi
