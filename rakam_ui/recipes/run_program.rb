@@ -18,7 +18,7 @@ bash "download and build package" do
   code <<-EOH
     cd /home/webapp
     su webapp -l -c 'if cd rakam; then git pull; else git clone https://github.com/buremba/rakam.git && cd rakam; fi'
-    su webapp -l -c 'cd rakam; mvn clean install -DskipTests -Pmove-package-to-dependency'
+    su webapp -l -c 'cd rakam; mvn clean install -DskipTests && cd rakam/target; tar -zxvf *-bundle.tar.gz'
   EOH
 end
 
@@ -32,6 +32,6 @@ end
 
 bash "run program" do
   code <<-EOH
-    su webapp -l -c 'cd /home/webapp/rakam; nohup java -Dhttp.server.address=0.0.0.0:5000 -Dui.directory=../rakam-ui/app -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/dependency/*: org.rakam.ServiceStarter ../config.properties &'
+    su webapp -l -c 'cd /home/webapp/rakam; nohup java -Dhttp.server.address=0.0.0.0:5000 -Dui.directory=../rakam-ui/app -Dlog.levels-file=../log.properties -Dlog.output-file=../logs/app.log -Dlog.enable-console=false -cp rakam/target/rakam-*/lib/*: org.rakam.ServiceStarter ../config.properties &'
   EOH
 end
