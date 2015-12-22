@@ -1,4 +1,4 @@
-source "https://supermarket.getchef.com"
+source "https://supermarket.chef.io"
 
 cookbook 'java', '~> 1.36.0'
 cookbook 'nodejs', '~> 2.4.4'
