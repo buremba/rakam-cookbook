@@ -1,0 +1,37 @@
+http-server.http.port=8080
+
+<% if node["opsworks"]["instance"]["hostname"] == 'presto-coordinator' -%>
+coordinator=true
+discovery-server.enabled=true
+<% else -%>
+coordinator=false
+discovery-server.enabled=false	
+<% end -%>
+
+node-scheduler.include-coordinator=true
+
+discovery.uri=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["elastic_ip"] %>:8080
+
+exchange.http-client.max-connections=1000
+exchange.http-client.max-connections-per-server=1000
+exchange.http-client.connect-timeout=1m
+exchange.http-client.idle-timeout=1m
+
+scheduler.http-client.max-connections=1000
+scheduler.http-client.max-connections-per-server=1000
+scheduler.http-client.connect-timeout=1m
+scheduler.http-client.idle-timeout=1m
+
+query.client.timeout=5m
+query.max-age=560m
+
+query.max-memory=2GB
+query.max-memory-per-node=1GB
+
+memoryManager.http-client.connect-timeout=7s
+memoryManager.http-client.idle-timeout=12s
+memoryManager.http-client.request-timeout=20s
+
+presto.version=<%= node['presto_version'] %>
+experimental-syntax-enabled=true
+distributed-joins-enabled=true

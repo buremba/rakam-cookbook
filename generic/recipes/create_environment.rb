@@ -1,10 +1,11 @@
-#
-# Cookbook Name:: java8
-# Recipe:: default
-#
-# Copyright (c) 2015 The Authors, All Rights Reserved.
-
 include_recipe 'java::oracle'
+
+bash "update packages" do
+  code <<-EOH
+    apt-get update
+  EOH
+end
+
 include_recipe 'ark::default'
 
 ark 'maven' do
@@ -16,8 +17,15 @@ ark 'maven' do
   append_env_path true
 end
 
+bash "install git" do
+  code <<-EOH
+    apt-get install git -y;
+  EOH
+end
+
 bash "create application user" do
   code <<-EOH
     adduser --system --shell /bin/bash --group --disabled-password --home /home/webapp webapp
+    su webapp -l -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
   EOH
 end

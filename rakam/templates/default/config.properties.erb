@@ -1,0 +1,52 @@
+store.adapter=presto
+presto.address=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["elastic_ip"] %>:8080
+presto.cold_storage_connector=rakam_raptor
+presto.metastore.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+presto.metastore.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+presto.metastore.jdbc.max_connection=5
+
+report.metadata.store=jdbc
+report.metadata.store.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+report.metadata.store.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+report.metadata.store.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+report.metadata.store.jdbc.max_connection=5
+
+event.store=kinesis
+event.store.kinesis.stream=rakam-events
+
+store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+store.adapter.postgresql.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+store.adapter.postgresql.max_connection=5
+
+plugin.user.enabled=true
+plugin.user.mailbox.enable=true
+real-time.enabled=true
+event.stream.enabled=true
+event-explorer.enabled=true
+user.funnel-analysis.enabled=true
+plugin.user.storage=postgresql
+user.retention-analysis.enabled=true
+plugin.geoip.enabled=false
+
+http.server.address=0.0.0.0:<%= node["rakam-port"] %>
+plugin.user.storage.identifier_column=id
+plugin.user.mailbox.adapter=postgresql
+plugin.user.mailbox.enable=true
+ui.custom-page.backend=jdbc
+module.website.mapper=true
+event.ab-testing.enabled=true
+ui.enable=true
+module.website.mapper=true
+plugin.geoip.connection-type.database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-Connection-Type-Test.mmdb
+plugin.geoip.isp.database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-ISP-Test.mmdb
+automation.enabled=true
+mail.smtp.host=127.0.0.1
+mail.smtp.user=test
+plugin.user.actions=email
+
+event.store.bulk.s3-bucket=rakam-bulk
+
+aws.region=eu-central-1
+presto.streaming.port=5466

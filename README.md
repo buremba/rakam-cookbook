@@ -1,4 +1,4 @@
-# external_cookbook-cookbook
+# rakam-cookbook
 
 TODO: Enter the cookbook description here.
 

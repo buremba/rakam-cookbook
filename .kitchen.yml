@@ -7,10 +7,17 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-  - name: centos-7.1
 
 suites:
-  - name: default
+  - name: presto
     run_list:
-        - recipe[generic::install_java]
-    attributes:
+        - recipe[generic::create_environment]
+        - recipe[presto::setup_or_update]
+        - recipe[presto::start]
+    attributes: { "opsworks": { "instance": {"hostname": "presto-coordinator", "id": "id-4554"}, "layers": {"presto": {"instances": {"presto-coordinator": {"elastic_ip": "127.0.0.1"}}}} }, "deploy": {"presto": {"database": {"host": "127.0.0.1", "username": "buremba", "password": "", "database": ""}}}}
+  - name: rakam
+    run_list:
+        - recipe[generic::create_environment]
+        - recipe[rakam::setup_or_update]
+        - recipe[rakam::start]
+    attributes: { "opsworks": { "instance": {"hostname": "rakam1", "id": "id-4554"}, "layers": {"presto": {"instances": {"presto-coordinator": {"elastic_ip": "127.0.0.1"}}}} }, "deploy": {"rakam": {"database": {"host": "127.0.0.1", "username": "buremba", "password": "", "database": ""}}}}

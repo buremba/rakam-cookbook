@@ -1,0 +1,9 @@
+Host github.com-foo
+    HostName github.com
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/rakam_raptor
+
+Host github.com-bar
+    HostName github.com
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/rakam_streaming
