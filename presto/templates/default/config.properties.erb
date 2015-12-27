@@ -10,7 +10,11 @@ discovery-server.enabled=false
 
 node-scheduler.include-coordinator=true
 
+<% if node["opsworks"]["instance"]["hostname"] == 'presto-coordinator' -%>
+discovery.uri=52.29.16.112
+<% else -%>
 discovery.uri=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["elastic_ip"] %>:8080
+<% end -%>
 
 exchange.http-client.max-connections=1000
 exchange.http-client.max-connections-per-server=1000
