@@ -26,6 +26,6 @@ end
 bash "create application user" do
   code <<-EOH
     adduser --system --shell /bin/bash --group --disabled-password --home /home/webapp webapp
-    su webapp -l -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
+    su webapp -l -c 'mkdir -p /home/webapp/.ssh && ssh-keyscan github.com >> /home/webapp/.ssh/known_hosts'
   EOH
 end
