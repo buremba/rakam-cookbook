@@ -30,6 +30,11 @@ directory "/home/webapp/presto/etc/catalog" do
   group "webapp"
   mode 0755
 end
+directory "/home/webapp/presto/var" do
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
 
 template "/home/webapp/presto/etc/config.properties" do
   source "config.properties.erb"
