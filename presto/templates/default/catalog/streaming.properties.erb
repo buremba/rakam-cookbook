@@ -1,7 +1,10 @@
 connector.name=streaming
 
-kinesis.stream=rakam-events
 stream.source=kinesis
+
+kinesis.stream=rakam-events
+aws.region=eu-central-1
+
 kinesis.idle-time=30s
 
 target.connector_id=rakam_raptor
@@ -11,9 +14,9 @@ backup.timeout=1m
 
 backup.provider=s3
 backup.directory=streaming
-aws.s3-bucket=rakam-streaming
+backup.s3.bucket=rakam-streaming
+backup.s3.aws.region=eu-central-1
 
-aws.region=eu-central-1
 
 metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
 metadata.username=<%= node["deploy"]["presto"]["database"]["username"] %>
