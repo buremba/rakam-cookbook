@@ -120,9 +120,3 @@ bash "download-and-setup-presto" do
     su webapp -l -c 'cd presto-rakam-raptor; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; mv target/presto-rakam-*/* ../presto/plugin/presto-rakam-raptor'
   EOH
 end
-
-#include_recipe 'presto::service'
-
-#service 'presto' do
-#  action :start
-#end
