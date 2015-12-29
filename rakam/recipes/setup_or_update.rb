@@ -8,14 +8,14 @@ bash "download and build package" do
   EOH
 end
 
-template "/home/webapp/rakam-server/config.properties" do
+template "/home/webapp/rakam-server/etc/config.properties" do
   source "config.properties.erb"
   owner "webapp"
   group "webapp"
   mode 0644
 end
 
-template "/home/webapp/rakam-server/log.properties" do
+template "/home/webapp/rakam-server/etc/log.properties" do
   source "log.properties.erb"
   owner "webapp"
   group "webapp"
