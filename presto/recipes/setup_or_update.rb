@@ -115,8 +115,8 @@ bash "download-and-setup-presto" do
     su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-*/bin/ presto/'
     su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-*/lib/ presto/'
     su webapp -l -c 'if cd presto-rakam-streaming; then ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git pull"; else ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git clone git@github.com:buremba/presto-rakam-streaming.git" && cd presto-rakam-streaming; fi'
-    su webapp -l -c 'cd presto-rakam-streaming; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; mv target/presto-rakam-*/* ../presto/plugin/presto-rakam-streaming'
-    su webapp -l -c 'if cd presto-rakam-raptor; then ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_raptor; git pull"; else ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_raptor; git clone git@github.com:buremba/presto-rakam-raptor.git" && cd presto-rakam-raptor; fi'
+    su webapp -l -c 'cd presto-rakam-streaming; git checkout #{node['rakam_streaming_checkout']}; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; mv target/presto-rakam-*/* ../presto/plugin/presto-rakam-streaming'
+    su webapp -l -c 'if cd presto-rakam-raptor; git checkout #{node['rakam_raptor_checkout']}; then ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_raptor; git pull"; else ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_raptor; git clone git@github.com:buremba/presto-rakam-raptor.git" && cd presto-rakam-raptor; fi'
     su webapp -l -c 'cd presto-rakam-raptor; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; mv target/presto-rakam-*/* ../presto/plugin/presto-rakam-raptor'
   EOH
 end
