@@ -21,3 +21,10 @@ template "/home/webapp/rakam-server/etc/log.properties" do
   group "webapp"
   mode 0644
 end
+
+template "/home/webapp/rakam-server/etc/jvm.config" do
+  source "jvm.config.erb"
+  owner "webapp"
+  group "webapp"
+  mode 0644
+end
