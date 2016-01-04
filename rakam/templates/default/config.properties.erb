@@ -30,6 +30,8 @@ plugin.user.storage=postgresql
 user.retention-analysis.enabled=true
 plugin.geoip.enabled=true
 
+http.server.debug=true
+http.server.proxy-protocol=true
 http.server.address=0.0.0.0:<%= node["rakam-port"] %>
 plugin.user.storage.identifier_column=id
 plugin.user.mailbox.adapter=postgresql
