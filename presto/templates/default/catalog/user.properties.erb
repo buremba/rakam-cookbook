@@ -1,0 +1,5 @@
+connector.name=postgresql
+
+connection-url=jdbc:postgresql://<%= node["deploy"]["presto"]["database"]["host"] %>:5432/<%= node["deploy"]["presto"]["database"]["database"] %>
+connection-user=<%= node["deploy"]["presto"]["database"]["username"] %>
+connection-password=<%= node["deploy"]["presto"]["database"]["password"] %>
