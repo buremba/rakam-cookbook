@@ -1,5 +1,5 @@
 connector.name=postgresql
 
-connection-url=jdbc:postgresql://<%= node["stack"]["rds_instances"][1]["address"] %>:<%= node["stack"]["rds_instances"][1]["port"] %>/<%= node["stack"]["rds_instances"][1]["db_name"] %>
-connection-user=<%= node["stack"]["rds_instances"][1]["master_username"] %>
+connection-url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
+connection-user=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 connection-password=<%= node["deploy"]["presto"]["database"]["password"] %>
