@@ -1,5 +1,5 @@
 connector.name=postgresql
 
-connection-url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:5432/<%= node["deploy"]["rakam"]["database"]["database"] %>
-connection-user=<%= node["deploy"]["rakam"]["database"]["username"] %>
+connection-url=jdbc:postgresql://<%= node["stack"]["rds_instances"][1]["address"] %>:<%= node["stack"]["rds_instances"][1]["port"] %>/<%= node["stack"]["rds_instances"][1]["db_name"] %>
+connection-user=<%= node["stack"]["rds_instances"][1]["master_username"] %>
 connection-password=<%= node["deploy"]["rakam"]["database"]["password"] %>
