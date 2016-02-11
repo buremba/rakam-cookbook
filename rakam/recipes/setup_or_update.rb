@@ -28,3 +28,5 @@ template "/home/webapp/rakam-server/etc/jvm.config" do
   group "webapp"
   mode 0644
 end
+
+include_recipe "rakam::update_ui"
