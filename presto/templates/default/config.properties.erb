@@ -10,9 +10,7 @@ discovery-server.enabled=false
 
 node-scheduler.include-coordinator=true
 
-<% if node["opsworks"]["instance"]["hostname"] == 'presto-coordinator' -%>
-discovery.uri=127.0.0.1
-<% else -%>
+<% if node["opsworks"]["instance"]["hostname"] != 'presto-coordinator' -%>
 discovery.uri=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["private_ip"] %>:8080
 <% end -%>
 
