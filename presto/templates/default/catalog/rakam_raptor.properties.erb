@@ -6,12 +6,6 @@ backup.provider=s3
 aws.s3-bucket=rakam-batch
 aws.region=eu-central-1
 
-#metadata.host=presto-metadata.cpydbx2bjqlx.eu-central-1.rds.amazonaws.com
-#metadata.username=presto
-#metadata.password=hebelek123
-#metadata.database=presto
-#metadata.db.connections.max=500
-
 metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
 metadata.username=<%= node["deploy"]["presto"]["database"]["username"] %>
 metadata.password=<%= node["deploy"]["presto"]["database"]["password"] %>
