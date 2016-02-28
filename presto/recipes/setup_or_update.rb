@@ -20,17 +20,25 @@ directory "/home/webapp/presto/plugin/presto-rakam-raptor" do
   mode 0755
 end
 
+directory "/mnt/presto" do
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
+
+
+directory "/mnt/presto/var" do
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
+
 directory "/home/webapp/presto/etc" do
   owner "webapp"
   group "webapp"
   mode 0755
 end
 directory "/home/webapp/presto/etc/catalog" do
-  owner "webapp"
-  group "webapp"
-  mode 0755
-end
-directory "/home/webapp/presto/var" do
   owner "webapp"
   group "webapp"
   mode 0755
