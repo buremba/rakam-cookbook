@@ -1,7 +1,7 @@
 default['data-dir'] = '/home/ubuntu/presto'
 default['environment'] = 'production'
 default['presto_version'] = '0.123'
-default['data-dir'] = '/home/webapp/presto'
+default['data-dir'] = '/mnt/presto'
 default['rakam_streaming_checkout'] = 'HEAD'
 default['rakam_raptor_checkout'] = 'HEAD'
 default['jvm-properties'] = ''
