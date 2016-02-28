@@ -13,7 +13,7 @@ report.metadata.store.jdbc.password=<%= node["deploy"]["rakam"]["database"]["pas
 report.metadata.store.jdbc.max_connection=5
 
 event.store=kinesis
-event.store.kinesis.stream=rakam-events
+event.store.kinesis.stream=<%= node["kinesis"] %>
 
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
@@ -48,7 +48,7 @@ mail.smtp.host=127.0.0.1
 mail.smtp.user=test
 plugin.user.actions=email
 
-event.store.bulk.s3-bucket=rakam-bulk
+event.store.bulk.s3-bucket=<%= node["s3"]["bulk"] %>
 
 aws.region=eu-central-1
 presto.streaming.port=5466
