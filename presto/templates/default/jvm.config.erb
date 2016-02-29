@@ -1,5 +1,11 @@
 -server
+<% if node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' -%>
+-Xmx4G
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.large' -%>
 -Xmx2G
+<% else -%>
+-Xmx2G
+<% end -%>
 -XX:+UseG1GC
 -XX:+UseGCOverheadLimit
 -XX:+ExplicitGCInvokesConcurrent
