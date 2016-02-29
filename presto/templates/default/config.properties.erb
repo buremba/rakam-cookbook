@@ -29,8 +29,8 @@ scheduler.http-client.idle-timeout=1m
 query.client.timeout=5m
 query.max-age=560m
 
-query.max-memory=2GB
-query.max-memory-per-node=1GB
+#query.max-memory=2GB
+#query.max-memory-per-node=1GB
 
 memoryManager.http-client.connect-timeout=7s
 memoryManager.http-client.idle-timeout=12s
@@ -38,4 +38,4 @@ memoryManager.http-client.request-timeout=20s
 
 presto.version=<%= node['presto_version'] %>
 experimental-syntax-enabled=true
-distributed-joins-enabled=true
+#distributed-joins-enabled=true
