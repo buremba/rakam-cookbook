@@ -4,4 +4,5 @@
 -XX:+UseGCOverheadLimit
 -XX:+ExplicitGCInvokesConcurrent
 -XX:OnOutOfMemoryError=kill -9 %p
+-Djava.util.logging.config.file=/home/webapp/rakam-server/etc/log.properties
 <%= node["jvm-properties"] %>
