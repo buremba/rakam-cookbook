@@ -1,4 +1,6 @@
 -server
+<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' -%>
+-Xmx8G
 <% if node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' -%>
 -Xmx4G
 <% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.large' -%>
