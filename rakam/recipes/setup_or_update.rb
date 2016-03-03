@@ -16,6 +16,13 @@ template "/home/webapp/rakam-server/etc/config.properties" do
   mode 0644
 end
 
+template "/home/webapp/rakam-server/etc/logging.properties" do
+  source "logging.properties.erb"
+  owner "webapp"
+  group "webapp"
+  mode 0644
+end
+
 template "/home/webapp/rakam-server/etc/log.properties" do
   source "log.properties.erb"
   owner "webapp"
