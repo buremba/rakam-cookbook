@@ -1,4 +1,3 @@
-.level = INFO
 handlers=net.kencochrane.raven.jul.SentryHandler
 net.kencochrane.raven.jul.SentryHandler.dsn=https://1a6256dff7a3479798fab1047713141a:fd399bd4a4e346a8a62a704e663914fa@sentry-b2c.herokuapp.com/3?options
 net.kencochrane.raven.jul.SentryHandler.tags=cluster:<%= node["opsworks"]["stack"]["id"] %>,name:<%= node["opsworks"]["stack"]["name"] %>
