@@ -8,6 +8,7 @@ bash "download and build package" do
   EOH
 end
 
+
 template "/home/webapp/rakam-server/etc/config.properties" do
   source "config.properties.erb"
   owner "webapp"
@@ -27,6 +28,14 @@ template "/home/webapp/rakam-server/etc/jvm.config" do
   owner "webapp"
   group "webapp"
   mode 0644
+end
+
+remote_file '/home/webapp/rakam-server/lib/raven-4.0.jar' do
+  source 'http://repo1.maven.org/maven2/net/kencochrane/raven/raven/4.0/raven-4.0.jar'
+  owner 'webapp'
+  group 'webapp'
+  mode 0644
+  action :create
 end
 
 include_recipe "rakam::update_ui"
