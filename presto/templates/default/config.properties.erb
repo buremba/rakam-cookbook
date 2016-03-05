@@ -30,7 +30,15 @@ query.client.timeout=5m
 query.max-age=560m
 
 #query.max-memory=2GB
+<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' -%>
+query.max-memory-per-node=4GB
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' -%>
 query.max-memory-per-node=2GB
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.large' -%>
+query.max-memory-per-node=1GB
+<% else -%>
+query.max-memory-per-node=1GB
+<% end -%>
 
 memoryManager.http-client.connect-timeout=7s
 memoryManager.http-client.idle-timeout=12s
