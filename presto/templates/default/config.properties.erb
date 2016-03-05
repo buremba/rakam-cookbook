@@ -30,12 +30,10 @@ query.client.timeout=5m
 query.max-age=560m
 
 #query.max-memory=2GB
-<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' -%>
+<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' -%>
 query.max-memory-per-node=4GB
-<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' -%>
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.large' -%>
 query.max-memory-per-node=2GB
-<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.large' -%>
-query.max-memory-per-node=1GB
 <% else -%>
 query.max-memory-per-node=1GB
 <% end -%>
