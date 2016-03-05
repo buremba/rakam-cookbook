@@ -1,10 +1,8 @@
 -server
-<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' -%>
+<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' -%>
 -Xmx8G
-<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' -%>
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.large' -%>
 -Xmx4G
-<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.large' -%>
--Xmx2G
 <% else -%>
 -Xmx2G
 <% end -%>
