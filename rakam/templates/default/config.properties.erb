@@ -64,7 +64,5 @@ mail.smtp.user=370f6cc01d4ef0
 mail.smtp.password=f70825b6ae66112ba49d708f9b8fcda0
 mail.smtp.use-tls=true
 <% node['rakam-config'].each do |key, value| -%>
-    <% unless value.empty? -%>
-        <%= key %>=<%= value %>
-    <% end %>
+<%= key %>=<%= value %>
 <% end %>
