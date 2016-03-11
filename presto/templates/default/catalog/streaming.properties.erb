@@ -13,8 +13,6 @@ backup.timeout=1m
 
 backup.provider=s3
 backup.s3.bucket=<%= node["s3"]["streaming"] %>
-backup.s3.aws.region=eu-central-1
-
 
 metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
 metadata.username=<%= node["deploy"]["presto"]["database"]["username"] %>
