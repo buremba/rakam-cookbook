@@ -1,9 +1,9 @@
 store.adapter=presto
 presto.address=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["private_ip"] %>:8080
 presto.cold_storage_connector=rakam_raptor
-presto.metastore.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-presto.metastore.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+presto.metastore.jdbc.url=jdbc:mysql://<%= node["deploy"]["presto"]["database"]["host"] %>:<%= node["deploy"]["presto"]["database"]["port"] %>/<%= node["deploy"]["presto"]["database"]["database"] %>
+presto.metastore.jdbc.username=<%= node["deploy"]["presto"]["database"]["username"] %>
+presto.metastore.jdbc.password=<%= node["deploy"]["presto"]["database"]["password"] %>
 presto.metastore.jdbc.max_connection=5
 
 report.metadata.store=jdbc
