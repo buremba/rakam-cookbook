@@ -125,9 +125,9 @@ bash "download-and-setup-presto" do
   code <<-EOH
     cd /home/webapp
     su webapp -l -c 'wget -N #{presto_download_address}'
-	  su webapp -l -c 'tar -zxvf presto-server-*.tar.gz'
-    su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-*/bin/ presto/'
-    su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-*/lib/ presto/'
+    su webapp -l -c 'tar -zxvf presto-server-#{node['presto_version']}.tar.gz'
+    su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-#{node['presto_version']}/bin/ presto/'
+    su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-#{node['presto_version']}/lib/ presto/'
     su webapp -l -c 'rm -rf presto/plugin/postgresql && cp -r presto-server-*/plugin/postgresql presto/plugin'
     su webapp -l -c 'if cd presto-rakam-streaming; then ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git pull"; else ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git clone git@github.com:buremba/presto-rakam-streaming.git" && cd presto-rakam-streaming; fi'
     su webapp -l -c 'cd presto-rakam-streaming; git checkout #{node['rakam_streaming_checkout']}; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; rm -r ../presto/plugin/presto-rakam-streaming; mv target/presto-rakam-*/ ../presto/plugin/presto-rakam-streaming'
