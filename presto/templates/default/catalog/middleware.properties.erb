@@ -1,6 +1,6 @@
 connector.name=middleware
 
-aws.region=eu-central-1
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
 aws.s3-bucket=<%= node["s3"]["bulk"] %>
 
