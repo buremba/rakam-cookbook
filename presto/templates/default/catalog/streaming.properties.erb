@@ -4,7 +4,7 @@ stream.source=kinesis
 middleware.max-flush-duration=30s
 
 kinesis.stream=<%= node["kinesis"] %>
-aws.region=eu-central-1
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
 target.connector_id=rakam_raptor
 
