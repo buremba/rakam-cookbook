@@ -4,7 +4,7 @@ backup.timeout=20m
 
 backup.provider=s3
 aws.s3-bucket=<%= node["s3"]["batch"] %>
-aws.region=eu-central-1
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
 metadata.db.type=mysql
 metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
