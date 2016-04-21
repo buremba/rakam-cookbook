@@ -1,5 +1,12 @@
 include_recipe "nodejs::npm"
 
+template "/home/webapp/.ssh/rakam_ui" do
+  source "keys/ui"
+  owner "webapp"
+  group "webapp"
+  mode 0600
+end
+
 bash "download and build package" do
   code <<-EOH
     cd /home/webapp
