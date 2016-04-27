@@ -50,7 +50,7 @@ plugin.user.actions=email
 
 event.store.bulk.s3-bucket=<%= node["s3"]["bulk"] %>
 
-aws.region=eu-central-1
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
 presto.streaming.port=5466
 
 ui.directory=/home/webapp/rakam-ui/app
