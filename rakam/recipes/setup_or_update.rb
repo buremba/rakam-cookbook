@@ -27,6 +27,7 @@ template "/home/webapp/rakam-server/etc/logging.properties" do
   source "logging.properties.erb"
   owner "webapp"
   group "webapp"
+  variables lazy { :version => `bash -c "cd home/webapp/rakam; git describe --tags"` }
   mode 0644
 end
 
