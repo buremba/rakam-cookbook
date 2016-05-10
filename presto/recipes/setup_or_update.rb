@@ -20,7 +20,7 @@ directory "/home/webapp/presto/plugin/presto-rakam-raptor" do
   mode 0755
 end
 
-directory node['node-dir'] do
+directory node['data-dir'] do
   owner "webapp"
   group "webapp"
   mode 0755
