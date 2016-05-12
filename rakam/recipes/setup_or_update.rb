@@ -1,5 +1,5 @@
-node['nodejs']['version'] = '5.9.0'
-include_recipe "nodejs::npm"
+include_recipe "nodejs::nodejs_from_binary"
+node.default['nodejs']['version'] = '5.9.0'
 
 template "/home/webapp/.ssh/rakam_ui" do
   source "keys/ui"
