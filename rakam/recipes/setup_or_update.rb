@@ -1,3 +1,4 @@
+node['nodejs']['version'] = '5.9.0'
 include_recipe "nodejs::npm"
 
 template "/home/webapp/.ssh/rakam_ui" do
