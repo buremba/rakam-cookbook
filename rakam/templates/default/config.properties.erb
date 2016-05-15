@@ -6,11 +6,10 @@ presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
 presto.metastore.jdbc.max_connection=5
 
-report.metadata.store=jdbc
-report.metadata.store.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-report.metadata.store.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-report.metadata.store.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
-report.metadata.store.jdbc.max_connection=5
+ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+ui.metadata.jdbc.max_connection=5
 
 event.store=kinesis
 event.store.kinesis.stream=<%= node["kinesis"] %>
