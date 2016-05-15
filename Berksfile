@@ -1,5 +1,6 @@
 source "https://supermarket.chef.io"
 
+cookbook 'build-essential', '= 3.2.0'
 cookbook 'java', '~> 1.36.0'
 cookbook 'nodejs', '~> 2.4.4'
 cookbook 'ark', '~> 0.9.0'
