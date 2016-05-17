@@ -6,7 +6,7 @@ presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
 presto.metastore.jdbc.max_connection=5
 
-<% if defined?(node['rakam-config']['ui']['enabled']) && node['rakam-config']['ui']['enabled'] == 'true' -%>
+<% if defined?(node['rakam-config']['ui-enabled']) && node['rakam-config']['ui-enabled'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
