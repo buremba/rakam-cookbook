@@ -6,10 +6,11 @@ presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
 presto.metastore.jdbc.max_connection=5
 
+<% if defined?(node['rakam-config']['ui']['enabled']) && node['rakam-config']['ui']['enabled'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
-ui.metadata.jdbc.max_connection=5
+<% end -%>
 
 event.store=kinesis
 event.store.kinesis.stream=<%= node["kinesis"] %>
@@ -51,7 +52,7 @@ presto.streaming.port=5466
 log.output-file=rakam-server/logs/app.log
 log.enable-console=false
 
-secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOWGR35P5BJRYV2UHI937BZVXPGKP
+#secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOWGR35P5BJRYV2UHI937BZVXPGKP
 lock-key=<%= node["lock-key"] %>
 
 <% node['rakam-config'].each do |key, value| -%>
