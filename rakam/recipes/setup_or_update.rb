@@ -1,19 +1,24 @@
-include_recipe "nodejs::nodejs_from_binary"
-node.default['nodejs']['version'] = '5.9.0'
+if if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true'
+  include_recipe "nodejs::nodejs_from_binary"
+  node.default['nodejs']['version'] = '5.9.0'
 
-template "/home/webapp/.ssh/rakam_ui" do
-  source "keys/ui"
-  owner "webapp"
-  group "webapp"
-  mode 0600
-end
+  template "/home/webapp/.ssh/rakam_ui" do
+    source "keys/ui"
+    owner "webapp"
+    group "webapp"
+    mode 0600
+  end
 
-bash "download and build package" do
+  bash "download and build package" do
   code <<-EOH
     cd /home/webapp
     su webapp -l -c 'if cd rakam; then git pull; else git clone https://github.com/buremba/rakam.git && cd rakam; fi; git checkout #{node['checkout']}'
     su webapp -l -c 'cd rakam; mvn clean install -DskipTests && rm -rf ../rakam-server && mv rakam/target/*-bundle/rakam-* ../rakam-server'
   EOH
+  end
+  
+else
+  log "Ignoring BI module"
 end
 
 
