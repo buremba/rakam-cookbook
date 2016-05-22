@@ -18,7 +18,7 @@ end
 
 
 template "/home/webapp/rakam-server/etc/config.properties" do
-  source "config.properties.erb"
+  source "config_#{node['deployment_type']}.properties.erb"
   owner "webapp"
   group "webapp"
   mode 0644
