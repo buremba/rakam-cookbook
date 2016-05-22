@@ -6,34 +6,36 @@ ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
 <% end -%>
 
+<% if node['modules'].include?('user') -%>
+plugin.user.enabled=true
+plugin.user.storage=postgresql
+#plugin.user.mailbox.enable=false
+#plugin.user.mailbox.adapter=postgresql
+plugin.user.storage.identifier_column=id
+plugin.user.actions=email
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
 store.adapter.postgresql.max_connection=5
+<% end -%>
 
-plugin.user.enabled=true
-plugin.user.mailbox.enable=true
 real-time.enabled=true
 event.stream.enabled=false
 event-explorer.enabled=true
 user.funnel-analysis.enabled=true
-plugin.user.storage=postgresql
 user.retention-analysis.enabled=true
 plugin.geoip.enabled=true
 
 http.server.debug=true
 http.server.proxy-protocol=true
 http.server.address=0.0.0.0:<%= node["rakam-port"] %>
-plugin.user.storage.identifier_column=id
-plugin.user.mailbox.adapter=postgresql
-plugin.user.mailbox.enable=true
 module.website.mapper=true
 event.ab-testing.enabled=false
 module.website.mapper=true
 plugin.geoip.connection-type-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-Connection-Type-Test.mmdb
 plugin.geoip.isp-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-ISP-Test.mmdb
 automation.enabled=false
-plugin.user.actions=email
+
 
 log.output-file=rakam-server/logs/app.log
 log.enable-console=false
