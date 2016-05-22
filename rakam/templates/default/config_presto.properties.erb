@@ -20,6 +20,8 @@ plugin.user.enabled=true
 plugin.user.storage=postgresql
 #plugin.user.mailbox.enable=false
 #plugin.user.mailbox.adapter=postgresql
+plugin.user.storage.identifier_column=id
+plugin.user.actions=email
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
@@ -37,14 +39,12 @@ plugin.geoip.enabled=true
 http.server.debug=true
 http.server.proxy-protocol=true
 http.server.address=0.0.0.0:<%= node["rakam-port"] %>
-plugin.user.storage.identifier_column=id
 module.website.mapper=true
 event.ab-testing.enabled=false
 module.website.mapper=true
 plugin.geoip.connection-type-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-Connection-Type-Test.mmdb
 plugin.geoip.isp-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-ISP-Test.mmdb
 automation.enabled=false
-plugin.user.actions=email
 
 event.store.bulk.s3-bucket=<%= node["s3"]["bulk"] %>
 
