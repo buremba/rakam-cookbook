@@ -1,4 +1,4 @@
-if if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true'
+if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true'
   include_recipe "nodejs::nodejs_from_binary"
   node.default['nodejs']['version'] = '5.9.0'
 
