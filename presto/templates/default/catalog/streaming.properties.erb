@@ -5,7 +5,7 @@ middleware.max-flush-duration=30s
 
 kinesis.stream=<%= node["kinesis"] %>
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
-kinesis.consumer-dynamodb-table=<%= node["dynamodb_consumer_table""] %>
+kinesis.consumer-dynamodb-table=<%= node["dynamodb_consumer_table"] %>
 target.connector_id=rakam_raptor
 
 storage.directory=./var/stream
