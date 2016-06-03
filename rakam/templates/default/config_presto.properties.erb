@@ -3,13 +3,14 @@ presto.address=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["pre
 presto.cold_storage_connector=rakam_raptor
 presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
-presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 presto.metastore.jdbc.max_connection=5
 
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
-ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
+ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
+ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+
 <% end -%>
 
 event.store=kinesis
@@ -24,9 +25,9 @@ plugin.user.storage.identifier_column=id
 plugin.user.actions=email
 mail.smtp.host=127.0.0.1
 mail.smtp.user=test
-store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-store.adapter.postgresql.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+store.adapter.postgresql.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
+store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
+store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 store.adapter.postgresql.max_connection=5
 <% end -%>
 
