@@ -3,7 +3,7 @@ store.adapter=postgresql
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 <% end -%>
 
 <% if node['modules'].include?('user') -%>
@@ -17,7 +17,7 @@ mail.smtp.host=127.0.0.1
 mail.smtp.user=
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
 store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-store.adapter.postgresql.password=<%= node["deploy"]["rakam"]["database"]["password"] %>
+store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 store.adapter.postgresql.max_connection=5
 <% end -%>
 
@@ -38,11 +38,10 @@ plugin.geoip.connection-type-database.url=https://github.com/maxmind/MaxMind-DB/
 plugin.geoip.isp-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-ISP-Test.mmdb
 automation.enabled=false
 
-
 log.output-file=rakam-server/logs/app.log
 log.enable-console=false
 
-#secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOWGR35P5BJRYV2UHI937BZVXPGKP
+secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOW<%= node["lock-key"] %>TRHJ<%= node["opsworks"]["stack"]["id"] %>
 lock-key=<%= node["lock-key"] %>
 
 <% node['rakam-config'].each do |key, value| -%>
