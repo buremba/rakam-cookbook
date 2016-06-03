@@ -14,9 +14,9 @@ backup.timeout=1m
 backup.provider=s3
 backup.s3.bucket=<%= node["s3"]["streaming"] %>
 
-metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
-metadata.username=<%= node["deploy"]["presto"]["database"]["username"] %>
-metadata.password=<%= node["deploy"]["presto"]["database"]["password"] %>
-metadata.database=<%= node["deploy"]["presto"]["database"]["database"] %>
+metadata.host=<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/
+metadata.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
+metadata.password=<%= node["deploy"]["presto"]['environment_variables']["DB_PASSWORD"] %>
+metadata.database=<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 
 http-server.http.port=5466
