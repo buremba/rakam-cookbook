@@ -7,7 +7,7 @@ aws.s3-bucket=<%= node["s3"]["batch"] %>
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
 metadata.db.type=mysql
-metadata.host=<%= node["deploy"]["presto"]["database"]["host"] %>
+metadata.host=<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>
 metadata.username=<%= node["deploy"]["presto"]["database"]["username"] %>
 metadata.password=<%= node["deploy"]["presto"]["database"]["password"] %>
 metadata.database=<%= node["deploy"]["presto"]["database"]["database"] %>
