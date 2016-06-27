@@ -61,5 +61,6 @@ secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOW<%= node["lock-key"] %>TRHJ<%= node
 lock-key=<%= node["lock-key"] %>
 
 <% node['rakam-config'].each do |key, value| -%>
-  <%= key %>=<%= value %>
+
+  <%= value["id"] %>=<%= value["id"] %>
 <% end %>

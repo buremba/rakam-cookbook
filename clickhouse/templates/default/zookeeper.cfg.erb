@@ -1,0 +1,10 @@
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/opt/zookeeper/data
+clientPort=2181
+<% node["opsworks"]["layers"]["zookeeper"]["instances"].each do |key, value| -%>
+  <% if value["status"] == "online" -%>
+    <%= value["id"] %>=<%= value["private_ip"] %>:2181
+  <% end -%>
+<% end %>
