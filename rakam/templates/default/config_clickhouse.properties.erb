@@ -1,0 +1,69 @@
+store.adapter=clickhouse
+clickhouse.address=<%= node["clickhouse-dns-name"] %>
+
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
+metastore.adapter=dynamodb
+metastore.adapter.dynamodb.table=<%= node["metastore-table"] %>
+
+config-manager.adapter=dynamodb
+config-manager.adapter.dynamodb.table=<%= node["config-manager-table"] %>
+event.store.kinesis.stream=<%= node["kinesis"] %>
+
+plugin.user.storage=dynamodb
+plugin.user.storage.dynamodb.table=<%= node["user-table"] %>
+plugin.user.storage.identifier_column=id
+
+api-key-service.adapter=dynamodb
+api-key-service.adapter.dynamodb.table=<%= node["api-key-table"] %>
+
+query-metadata-store.adapter=dynamodb
+query-metadata-store.adapter.dynamodb.table=query-metadata-store
+
+<% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
+ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+<% end -%>
+
+store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
+store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+
+<% if node['modules'].include?('user') -%>
+plugin.user.enabled=true
+plugin.user.storage=postgresql
+#plugin.user.mailbox.enable=false
+#plugin.user.mailbox.adapter=postgresql
+plugin.user.storage.identifier_column=id
+plugin.user.actions=email
+mail.smtp.host=127.0.0.1
+mail.smtp.user=
+<% end -%>
+
+real-time.enabled=true
+event.stream.enabled=false
+event-explorer.enabled=true
+user.funnel-analysis.enabled=true
+user.retention-analysis.enabled=true
+plugin.geoip.enabled=true
+
+http.server.debug=true
+http.server.proxy-protocol=true
+http.server.address=0.0.0.0:<%= node["rakam-port"] %>
+module.website.mapper=true
+event.ab-testing.enabled=false
+module.website.mapper=true
+plugin.geoip.connection-type-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-Connection-Type-Test.mmdb
+plugin.geoip.isp-database.url=https://github.com/maxmind/MaxMind-DB/raw/master/test-data/GeoIP2-ISP-Test.mmdb
+automation.enabled=false
+
+log.output-file=rakam-server/logs/app.log
+log.enable-console=false
+
+secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOW<%= node["lock-key"] %>TRHJ<%= node["opsworks"]["stack"]["id"] %>
+lock-key=<%= node["lock-key"] %>
+
+<% node['rakam-config'].each do |key, value| -%>
+<%= key %>=<%= value %>
+<% end %>
+

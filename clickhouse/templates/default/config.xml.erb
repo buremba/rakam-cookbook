@@ -74,22 +74,23 @@
 		 https://clickhouse.yandex/reference_en.html#Distributed
 	  -->
 	
+	<remote_servers>
+		<servers>
+			<shard>
+				<weight>1</weight>
+				<internal_replication>false</internal_replication>
 
-	<remote_servers incl="clickhouse_remote_servers" />
-	<default>
-		<shard>
-			<weight>1</weight>
-			<internal_replication>false</internal_replication>
-
-			<% node["opsworks"]["layers"]["zookeeper"]["instances"].each do |key, value| -%>
-				<replica>
-					<host><%= value["private_ip"] %></host>
-					<port>9000</port>
-				</replica>
-			<% end %>
-		</shard>
-	</default>
-</remote_servers>
+				<% node["opsworks"]["layers"]["clickhouse"]["instances"].each do |key, value| -%>
+					<% if value["status"] == "online" -%>
+						<replica>
+							<host><%= value["private_ip"] %></host>
+							<port>9000</port>
+						</replica>
+					<% end -%>
+				<% end %>
+			</shard>
+		</servers>
+	</remote_servers>
 
 
 	<!-- If element has 'incl' attribute, then for it's value will be used corresponding substitution from another file.
