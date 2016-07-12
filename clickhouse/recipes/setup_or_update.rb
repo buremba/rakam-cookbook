@@ -13,7 +13,7 @@ bash "download and worker" do
   code <<-EOH
     cd /home/webapp
     su webapp -l -c 'if cd rakam-clickhouse-worker; then git pull; else git clone https://github.com/buremba/rakam-clickhouse-worker.git && cd rakam-clickhouse-worker; fi; git checkout #{node['checkout']}'
-    su webapp -l -c 'cd rakam-clickhouse-worker; mvn clean install -DskipTests && rm -rf ../worker && mv rakam-clickhouse-worker/target/*-bundle/clickhouse-worker-* ../worker'
+    su webapp -l -c 'cd rakam-clickhouse-worker; mvn clean install -DskipTests && rm -rf ../worker && mv target/*-bundle/clickhouse-worker-* ../worker'
   EOH
 end
 
