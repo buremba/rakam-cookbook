@@ -17,7 +17,7 @@ api-key-service.adapter=dynamodb
 api-key-service.adapter.dynamodb.table=<%= node["api-key-table"] %>
 
 query-metadata-store.adapter=dynamodb
-query-metadata-store.adapter.dynamodb.table=query-metadata-store
+query-metadata-store.adapter.dynamodb.table=<%= node["query-metastore"] %>
 
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>

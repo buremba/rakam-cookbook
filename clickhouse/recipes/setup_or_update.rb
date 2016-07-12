@@ -3,7 +3,7 @@ bash "download-and-setup-clickhouse" do
     mkdir -p /etc/apt/sources.list.d && \
     echo "deb http://repo.yandex.ru/clickhouse/trusty/ dists/stable/main/binary-amd64/" | tee /etc/apt/sources.list.d/clickhouse.list && \
     apt-get update && \
-    apt-get install --allow-unauthenticated -y clickhouse-server-common && \
+    apt-get install --allow-unauthenticated -y clickhouse-server-common clickhouse-client && \
     chown -R metrika /etc/clickhouse-server/
     sudo apt-get install jq
   EOH
