@@ -104,19 +104,7 @@
 		 See https://clickhouse.yandex/reference_en.html#Data%20replication
 	  -->
 	
-<zookeeper incl="zookeeper-servers" optional="true" />	
-
-<% node["opsworks"]["layers"]["zookeeper"]["instances"].each_with_index do |(key, idx), value| -%>
-  <% if value["status"] == "online" -%>
-    <node index="<%= idx %>">
-		<host><%= value["private_ip"] %></host>
-		<port>2181</port>
-	</node>
-  <% end -%>
-<% end %>
-	
-
-</zookeeper>
+	<zookeeper incl="zookeeper-servers" optional="true" />
 
 	<!-- Substitutions for parameters of replicated tables.
 	      Optional. If you don't use replicated tables, you could omit that.
