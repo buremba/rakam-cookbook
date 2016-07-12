@@ -9,10 +9,6 @@ config-manager.adapter=dynamodb
 config-manager.adapter.dynamodb.table=<%= node["config-manager-table"] %>
 event.store.kinesis.stream=<%= node["kinesis"] %>
 
-plugin.user.storage=dynamodb
-plugin.user.storage.dynamodb.table=<%= node["user-table"] %>
-plugin.user.storage.identifier_column=id
-
 api-key-service.adapter=dynamodb
 api-key-service.adapter.dynamodb.table=<%= node["api-key-table"] %>
 
@@ -25,15 +21,10 @@ ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 <% end -%>
 
-store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
-store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-
 <% if node['modules'].include?('user') -%>
 plugin.user.enabled=true
-plugin.user.storage=postgresql
-#plugin.user.mailbox.enable=false
-#plugin.user.mailbox.adapter=postgresql
+plugin.user.storage=dynamodb
+plugin.user.storage.dynamodb.table=<%= node["user-table"] %>
 plugin.user.storage.identifier_column=id
 plugin.user.actions=email
 mail.smtp.host=127.0.0.1
