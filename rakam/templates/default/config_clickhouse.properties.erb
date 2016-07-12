@@ -1,5 +1,5 @@
 store.adapter=clickhouse
-clickhouse.address=http://<%= node["clickhouse-dns-name"] %>
+clickhouse.address=http://<%= node["opsworks"]["layers"]["clickhouse"]["elb-load-balancers"][0]["dns_name"] %>
 
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
 metastore.adapter=dynamodb
