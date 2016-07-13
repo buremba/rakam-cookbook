@@ -81,7 +81,7 @@
 				<internal_replication>false</internal_replication>
 
 				<% node["opsworks"]["layers"]["clickhouse"]["instances"].each do |key, value| -%>
-					<% if value["status"] == "online" -%>
+					<% if value["status"] != "online" || value["status"] == "running_setup" -%>
 						<replica>
 							<host><%= value["private_ip"] %></host>
 							<port>9000</port>
