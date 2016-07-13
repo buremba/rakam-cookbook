@@ -1,5 +1,3 @@
-include_recipe 'clickhouse::service'
-
-service 'clickhouse' do
+service 'clickhouse-server' do
   action :stop
 end
