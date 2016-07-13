@@ -26,7 +26,7 @@ end
 
 bash "run worker" do
   code <<-EOH
-    su webapp -l -c 'cd /home/webapp/worker; bin/launcher start'
+    su webapp -l -c 'cd /home/webapp/worker; bin/launcher restart'
   EOH
 end
 
