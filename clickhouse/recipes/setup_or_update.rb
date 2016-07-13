@@ -24,6 +24,21 @@ template "/home/webapp/worker/etc/config.properties" do
   mode 0755
 end
 
+template "/home/webapp/worker/etc/logging.properties" do
+  source "logging.properties.erb"
+  owner "webapp"
+  group "webapp"
+  variables ({ :version => `bash -c "cd /home/webapp/rakam-clickhouse-worker; git describe --tags"` })
+  mode 0755
+end
+
+template "/home/webapp/worker/etc/jvm.config" do
+  source "jvm.config.erb"
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
+
 bash "run worker" do
   code <<-EOH
     su webapp -l -c 'cd /home/webapp/worker; bin/launcher restart'

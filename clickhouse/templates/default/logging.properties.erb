@@ -1,0 +1,5 @@
+handlers=com.getsentry.raven.jul.SentryHandler
+com.getsentry.raven.jul.SentryHandler.dsn=https://b507ce9416da4799a8379ddf93ec4056:10c3db26414240489f124f65b360601e@app.getsentry.com/62493
+com.getsentry.raven.jul.SentryHandler.tags=cluster:<%= node["opsworks"]["stack"]["id"] %>,name:<%= node["opsworks"]["stack"]["name"] %>,type:clickhouse-worker
+com.getsentry.raven.jul.SentryHandler.level=SEVERE
+com.getsentry.raven.jul.SentryHandler.release=<%= @version %>
