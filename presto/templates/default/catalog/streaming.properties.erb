@@ -20,3 +20,4 @@ metadata.password=<%= node["deploy"]["presto"]['environment_variables']["DB_PASS
 metadata.database=<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 
 http-server.http.port=5466
+aws.s3-bulk-bucket=<%= node["s3"]["bulk"] %>

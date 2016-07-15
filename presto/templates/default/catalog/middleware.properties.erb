@@ -2,7 +2,7 @@ connector.name=middleware
 
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
-aws.s3-bucket=<%= node["s3"]["bulk"] %>
+aws.s3-bulk-bucket=<%= node["s3"]["bulk"] %>
 
 target.connector_id=rakam_raptor
 middleware.filesystem=s3
