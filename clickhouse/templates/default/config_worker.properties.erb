@@ -4,5 +4,5 @@ event.store.kinesis.stream=<%= node["kinesis"] %>
 
 metastore.adapter.dynamodb.table=<%= node["metastore-table"] %>
 s3.bucket=<%= node["batch"] %>
-data-directory=/opt/clickhouse/data
+data-directory=<%= node["data-dir"] %>/data
 aws.enable-cloudwatch=true
