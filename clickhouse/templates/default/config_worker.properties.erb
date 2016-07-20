@@ -1,6 +1,7 @@
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
 node-identifier=<%= node["opsworks"]["instance"]["id"] %>
 event.store.kinesis.stream=<%= node["kinesis"] %>
+event.store.kinesis.app_name=<%= node["dynamodb_consumer_table"] %>
 
 metastore.adapter.dynamodb.table=<%= node["metastore-table"] %>
 s3.bucket=<%= node["batch"] %>
