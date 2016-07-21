@@ -38,12 +38,6 @@ template "/home/metrika/worker/etc/jvm.config" do
   mode 0755
 end
 
-bash "run worker" do
-  code <<-EOH
-    su metrika -l -c 'cd /home/metrika/worker; bin/launcher restart'
-  EOH
-end
-
 template "/etc/clickhouse-server/config.xml" do
   source "config.xml.erb"
   owner "metrika"
