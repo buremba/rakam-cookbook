@@ -81,15 +81,26 @@
 				   <weight>1</weight>
 				   <internal_replication>false</internal_replication>
 
-					<% #if value["status"] == "online" || value["status"] == "running_setup" -%>
+					<% if value["status"] != "stopped" -%>
 						<replica>
 							<host><%= value["private_ip"] %></host>
 							<port>9000</port>
 						</replica>
-					<% #end -%>
+					<% end -%>
 
 					</shard>
 				<% end %>
+
+				  <shard>
+				   <weight>1</weight>
+				   <internal_replication>false</internal_replication>
+
+					<replica>
+						<host><%= node["opsworks"]["instance"]["private_ip"] %></host>
+						<port>9000</port>
+					</replica>
+
+				  </shard>
 		</servers>
 	</remote_servers>
 
