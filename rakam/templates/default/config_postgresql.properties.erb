@@ -1,13 +1,13 @@
 store.adapter=postgresql
 
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
-ui.metadata.jdbc.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-ui.metadata.jdbc.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
+ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 <% end -%>
 
-store.adapter.postgresql.url=jdbc:postgresql://<%= node["deploy"]["rakam"]["database"]["host"] %>:<%= node["deploy"]["rakam"]["database"]["port"] %>/<%= node["deploy"]["rakam"]["database"]["database"] %>
-store.adapter.postgresql.username=<%= node["deploy"]["rakam"]["database"]["username"] %>
+store.adapter.postgresql.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
+store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 
 <% if node['modules'].include?('user') -%>

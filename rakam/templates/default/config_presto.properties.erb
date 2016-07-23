@@ -10,7 +10,6 @@ presto.metastore.jdbc.max_connection=5
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-
 <% end -%>
 
 event.store=kinesis
