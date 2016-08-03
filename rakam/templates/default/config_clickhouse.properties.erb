@@ -19,6 +19,7 @@ query-metadata-store.adapter.dynamodb.table=<%= node["query-metastore"] %>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+ui.google-login-client-id=501662626729-hsomia0k9di5cm0m40govgja5l3leef9.apps.googleusercontent.com
 <% end -%>
 
 <% if node['modules'].include?('user') -%>

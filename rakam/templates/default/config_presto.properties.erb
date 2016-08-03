@@ -1,5 +1,5 @@
 store.adapter=presto
-presto.address=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["private_ip"] %>:8080
+presto.address=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto1"]["private_ip"] %>:8080
 presto.cold_storage_connector=rakam_raptor
 presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
@@ -10,6 +10,7 @@ presto.metastore.jdbc.max_connection=5
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 ui.metadata.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+ui.google-login-client-id=501662626729-hsomia0k9di5cm0m40govgja5l3leef9.apps.googleusercontent.com
 <% end -%>
 
 event.store=kinesis
