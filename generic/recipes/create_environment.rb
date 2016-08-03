@@ -10,7 +10,7 @@ include_recipe 'ark::default'
 
 ark 'maven' do
   url             'http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz'
-  checksum        '8c190264bdf591ff9f1268dc0ad940a2726f9e958e367716a09b8aaa7e74a755'
+  checksum        '6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82'
   home_dir        '/usr/local/maven'
   win_install_dir '/usr/local/maven'
   version         '3.3.9'
