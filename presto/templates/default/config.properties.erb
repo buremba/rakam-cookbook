@@ -1,6 +1,6 @@
 http-server.http.port=8080
 
-<% if node["opsworks"]["instance"]["hostname"] == 'presto-coordinator' -%>
+<% if node["opsworks"]["instance"]["hostname"] == 'presto1' -%>
 coordinator=true
 discovery-server.enabled=true
 <% else -%>
@@ -10,10 +10,10 @@ discovery-server.enabled=false
 
 node-scheduler.include-coordinator=true
 
-<% if node["opsworks"]["instance"]["hostname"] == 'presto-coordinator' -%>
+<% if node["opsworks"]["instance"]["hostname"] == 'presto1' -%>
 discovery.uri=http://<%= node["opsworks"]["instance"]["private_ip"] %>:8080
 <% else -%>
-discovery.uri=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto-coordinator"]["private_ip"] %>:8080
+discovery.uri=http://<%= node["opsworks"]["layers"]["presto"]["instances"]["presto1"]["private_ip"] %>:8080
 <% end -%>
 
 exchange.http-client.max-connections=1000
