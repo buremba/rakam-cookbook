@@ -20,12 +20,10 @@ event.store.kinesis.stream=<%= node["kinesis"] %>
 plugin.user.enabled=true
 plugin.user.storage=postgresql
 #plugin.user.mailbox.enable=false
-plugin.user.enable_user_mapping=true
 #plugin.user.mailbox.adapter=postgresql
 plugin.user.storage.identifier_column=id
 plugin.user.actions=email
-mail.smtp.host=127.0.0.1
-mail.smtp.user=test
+
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>

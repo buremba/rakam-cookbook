@@ -44,6 +44,14 @@ template "/home/webapp/presto/etc/config.properties" do
   mode 0755
 end
 
+template "/home/webapp/presto/etc/logging.properties" do
+  source "logging.properties.erb"
+  owner "webapp"
+  group "webapp"
+  variables ({ :version => `bash -c "cd home/webapp/presto-rakam-streaming; git rev-parse HEAD"` })
+  mode 0644
+end
+
 template "/home/webapp/presto/etc/node.properties" do
   source "node.properties.erb"
   owner "webapp"
