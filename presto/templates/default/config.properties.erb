@@ -3,6 +3,9 @@ http-server.http.port=8080
 <% if node["opsworks"]["instance"]["hostname"] == 'presto1' -%>
 coordinator=true
 discovery-server.enabled=true
+
+memoryManager.http-client.connect-timeout=10s
+memoryManager.http-client.request-timeout=45s
 <% else -%>
 coordinator=false
 discovery-server.enabled=false	
