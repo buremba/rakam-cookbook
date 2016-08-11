@@ -38,9 +38,12 @@ query.max-memory-per-node=2GB
 query.max-memory-per-node=1GB
 <% end -%>
 
-memoryManager.http-client.connect-timeout=7s
-memoryManager.http-client.idle-timeout=12s
-memoryManager.http-client.request-timeout=20s
+optimizer.dictionary-aggregation=true
+optimizer.processing-optimization=columnar_dictionary
+optimizer.optimize-single-distinct=true
+optimizer.optimize-hash-generation=true
+optimizer.optimize-metadata-queries=true
+colocated-joins-enabled=true
 
 presto.version=<%= node['presto_version'] %>
 experimental-syntax-enabled=true
