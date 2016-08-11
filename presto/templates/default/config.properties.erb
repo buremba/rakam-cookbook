@@ -6,6 +6,11 @@ discovery-server.enabled=true
 
 memoryManager.http-client.connect-timeout=10s
 memoryManager.http-client.request-timeout=45s
+
+scheduler.http-client.max-connections=1000
+scheduler.http-client.max-connections-per-server=1000
+scheduler.http-client.connect-timeout=1m
+scheduler.http-client.idle-timeout=1m
 <% else -%>
 coordinator=false
 discovery-server.enabled=false	
@@ -24,13 +29,8 @@ exchange.http-client.max-connections-per-server=1000
 exchange.http-client.connect-timeout=1m
 exchange.http-client.idle-timeout=1m
 
-scheduler.http-client.max-connections=1000
-scheduler.http-client.max-connections-per-server=1000
-scheduler.http-client.connect-timeout=1m
-scheduler.http-client.idle-timeout=1m
-
-query.client.timeout=5m
-query.max-age=560m
+query.client.timeout=1m
+query.max-age=10m
 
 #query.max-memory=2GB
 <% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' -%>
