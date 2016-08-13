@@ -9,7 +9,7 @@ if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enabl
     mode 0600
   end
   
-  include_recipe "rakam::update_ui"
+include_recipe "rakam::update_ui"
 else
   log "Ignoring BI module"
 end
