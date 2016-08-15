@@ -15,6 +15,7 @@ user 'webapp' do
   comment 'Web application user'
   home '/home/webapp'
   shell '/bin/bash'
+  action :create
 end
 
 bash "create application user" do
