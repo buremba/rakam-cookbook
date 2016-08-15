@@ -1,11 +1,5 @@
 include_recipe 'java::oracle'
 
-bash "update packages" do
-  code <<-EOH
-    apt-get update
-  EOH
-end
-
 include_recipe 'ark::default'
 
 ark 'maven' do
