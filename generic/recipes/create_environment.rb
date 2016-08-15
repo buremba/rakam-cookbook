@@ -11,12 +11,6 @@ ark 'maven' do
   append_env_path true
 end
 
-bash "install git" do
-  code <<-EOH
-    apt-get install git -y;
-  EOH
-end
-
 bash "create application user" do
   code <<-EOH
     adduser --system --shell /bin/bash --group --disabled-password --home /home/webapp webapp
