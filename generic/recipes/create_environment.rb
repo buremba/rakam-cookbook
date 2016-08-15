@@ -11,9 +11,14 @@ ark 'maven' do
   append_env_path true
 end
 
+user 'webapp' do
+  comment 'Web application user'
+  home '/home/webapp'
+  shell '/bin/bash'
+end
+
 bash "create application user" do
   code <<-EOH
-    adduser --system --shell /bin/bash --group --home /home/webapp webapp
     su webapp -l -c 'mkdir -p /home/webapp/.ssh && ssh-keyscan github.com >> /home/webapp/.ssh/known_hosts'
   EOH
 end
