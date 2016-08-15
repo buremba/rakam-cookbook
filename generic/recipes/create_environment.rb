@@ -13,7 +13,7 @@ end
 
 bash "create application user" do
   code <<-EOH
-    adduser --system --shell /bin/bash --group --disabled-password --home /home/webapp webapp
+    adduser --system --shell /bin/bash --group --gecos "" --home /home/webapp webapp
     su webapp -l -c 'mkdir -p /home/webapp/.ssh && ssh-keyscan github.com >> /home/webapp/.ssh/known_hosts'
   EOH
 end
