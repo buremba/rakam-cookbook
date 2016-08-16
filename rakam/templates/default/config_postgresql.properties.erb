@@ -46,6 +46,16 @@ log.enable-console=false
 secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOW<%= node["lock-key"] %>TRHJ<%= node["opsworks"]["stack"]["id"] %>
 lock-key=<%= node["lock-key"] %>
 
-<% node['rakam-config'].each do |key, value| -%>
-<%= key %>=<%= value %>
-<% end %>
+<% if defined?(node['rakam-config']) -%>
+	<% if node['rakam-config'].kind_of?(Array) -%>
+		<% node['rakam-config'].each_with_index do |config, index| -%>
+	  		<%= config %>
+	   <% end -%>
+	<% elsif node['rakam-config'].is_a?(::Hash) -%>
+	   <% node['rakam-config'].each do |key, value| -%>
+	  		<%= key %>=<%= value %>
+	   <% end -%>
+	<% elsif -%>
+	   <%= node["rakam-config"] %>
+	<% end %>
+<% end -%>
