@@ -1,5 +1,5 @@
-include_recipe 'presto::service'
-
-service 'presto' do
-  action :start
+bash "run program" do
+  code <<-EOH
+    su webapp -l -c 'cd /home/webapp/presto && bin/launcher start'
+  EOH
 end
