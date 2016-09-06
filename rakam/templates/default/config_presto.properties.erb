@@ -1,12 +1,6 @@
 store.adapter=presto
-presto.address=http://<%= %x("dig +short -x #{node['presto-coordinator-elastic-ip']}") -%>:8080
-<%= %x("echo '#{node['presto-coordinator-elastic-ip']}'") -%>g
-<% print %x("echo '#{node['presto-coordinator-elastic-ip']}'") -%>d
-<%= %x("echo 'ff'") -%>d
-<%= `echo 'ff'` -%>z
-<% print `echo 'ff'` -%>s
-<%= `echo 'ff'` %>a
-<%= %x("echo 'ff'") -%>f
+presto.address=http://<%= `dig +short -x #{node['presto-coordinator-elastic-ip']}` -%>:8080
+<%= `dig +short -x 52.44.25.6` -%>
 presto.cold_storage_connector=rakam_raptor
 presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
