@@ -4,7 +4,7 @@ http-server.http.port=8080
 coordinator=true
 discovery-server.enabled=true
 
-memoryManager.http-client.connect-timeout=10sp
+memoryManager.http-client.connect-timeout=10s
 memoryManager.http-client.request-timeout=45s
 
 scheduler.http-client.max-connections=1000
@@ -33,9 +33,9 @@ query.client.timeout=1m
 query.max-age=10m
 
 #query.max-memory=2GB
-<% if ['c3.2xlarge', 'm3.xlarge', 'm4.xlarge'].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+<% if ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 query.max-memory-per-node=4GB
-<% if ['c3.xlarge', 'm3.large', 'm4.large'].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+<% if ["c3.xlarge", "m3.large", "m4.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 query.max-memory-per-node=2GB
 <% else -%>
 query.max-memory-per-node=1GB
