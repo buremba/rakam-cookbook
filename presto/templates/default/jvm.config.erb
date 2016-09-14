@@ -1,7 +1,7 @@
 -server
-<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'c4.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm4.2xlarge' -%>
+<% if ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx12G
-<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm4.xlarge' -%>
+<% elsif ["c3.xlarge", "m3.large", "m4.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx6G
 <% else -%>
 -Xmx3G
