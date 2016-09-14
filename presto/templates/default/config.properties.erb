@@ -35,7 +35,7 @@ query.max-age=10m
 #query.max-memory=2GB
 <% if ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 query.max-memory-per-node=4GB
-<% if ["c3.xlarge", "m3.large", "m4.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+<% elsif ["c3.xlarge", "m3.large", "m4.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 query.max-memory-per-node=2GB
 <% else -%>
 query.max-memory-per-node=1GB
