@@ -18,7 +18,6 @@ metadata.host=<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>
 metadata.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 metadata.password=<%= node["deploy"]["presto"]['environment_variables']["DB_PASSWORD"] %>
 metadata.database=<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
-http-client.request-timeout=30s
 
 http-server.http.port=5466
 aws.s3-bulk-bucket=<%= node["s3"]["bulk"] %>
