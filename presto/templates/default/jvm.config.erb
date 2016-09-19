@@ -1,5 +1,7 @@
 -server
-<% if ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+<% if ["c3.4xlarge", "m3.2xlarge", "m4.2xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+-Xmx24G
+<% elsif ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx12G
 <% elsif ["c3.xlarge", "m3.large", "m4.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx6G
