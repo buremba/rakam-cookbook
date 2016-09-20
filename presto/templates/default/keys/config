@@ -1,4 +1,0 @@
-Host github.com-bar
-    HostName github.com
-    IdentitiesOnly yes
-    IdentityFile ~/.ssh/rakam_streaming

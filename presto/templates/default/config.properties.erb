@@ -31,8 +31,7 @@ exchange.http-client.idle-timeout=1m
 
 query.client.timeout=1m
 query.max-age=10m
-
-#query.max-memory=2GB
+ #query.max-memory=2GB
 <% if ["c3.4xlarge", "m3.2xlarge", "m4.2xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 query.max-memory-per-node=10GB
 <% elsif ["c3.2xlarge", "m3.xlarge", "m4.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>

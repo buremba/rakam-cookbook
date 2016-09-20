@@ -107,18 +107,6 @@ template "/home/webapp/presto/etc/catalog/streaming.properties" do
   mode 0755
 end
 
-directory "/home/webapp/.ssh" do
-  owner "webapp"
-  group "webapp"
-  mode 0755
-end
-template "/home/webapp/.ssh/rakam_streaming" do
-  source "keys/rakam_streaming.key"
-  owner "webapp"
-  group "webapp"
-  mode 0600
-end
-
 presto_download_address = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/#{node['presto_version']}/presto-server-#{node['presto_version']}.tar.gz"
 
 bash "download-and-setup-presto" do
@@ -129,8 +117,7 @@ bash "download-and-setup-presto" do
     su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-#{node['presto_version']}/bin/ presto/'
     su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-#{node['presto_version']}/lib/ presto/'
     su webapp -l -c 'rm -rf presto/plugin/postgresql && cp -r presto-server-#{node['presto_version']}/plugin/postgresql presto/plugin'
-    su webapp -l -c 'if cd presto-rakam-streaming; then ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git pull"; else ssh-agent bash -c "ssh-add /home/webapp/.ssh/rakam_streaming; git clone git@github.com:buremba/presto-rakam-streaming.git" && cd presto-rakam-streaming; fi'
-    su webapp -l -c 'cd presto-rakam-streaming; git checkout #{node['rakam_streaming_checkout']}; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; rm -r ../presto/plugin/presto-rakam-streaming; mv target/presto-rakam-*/ ../presto/plugin/presto-rakam-streaming'
+    su webapp -l -c 'STREAMING_VERSION="$(curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version')" && wget -nc "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-rakam-streaming/${STREAMING_VERSION}/presto-rakam-streaming-${STREAMING_VERSION}.zip" && unzip -o "presto-rakam-streaming-${STREAMING_VERSION}.zip" && rm -rf ./presto/plugin/presto-rakam-streaming && mkdir ./presto/plugin/presto-rakam-streaming && mv presto-rakam-streaming-${STREAMING_VERSION}/* ./presto/plugin/presto-rakam-streaming'
     su webapp -l -c 'if cd presto-rakam-raptor; git checkout #{node['rakam_raptor_checkout']}; then git pull; else git clone https://github.com/buremba/presto-rakam-raptor.git && cd presto-rakam-raptor; fi'
     su webapp -l -c 'cd presto-rakam-raptor; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; rm -r ../presto/plugin/presto-rakam-raptor; mv target/presto-rakam-*/ ../presto/plugin/presto-rakam-raptor'
   EOH
