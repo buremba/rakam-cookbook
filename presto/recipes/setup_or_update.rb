@@ -48,7 +48,7 @@ template "/home/webapp/presto/etc/logging.properties" do
   source "logging.properties.erb"
   owner "webapp"
   group "webapp"
-  variables ({ :version => `bash -c "cd home/webapp/presto-rakam-streaming; git rev-parse HEAD"` })
+  variables ({ :version => `bash -c "curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version'"` })
   mode 0644
 end
 
