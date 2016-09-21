@@ -1,10 +1,10 @@
 store.adapter=presto
 presto.address=http://<%= (`dig +short -x #{node['presto-coordinator-elastic-ip']}`).strip -%>:8080
-presto.cold_storage_connector=rakam_raptor
+presto.cold-storage-connector=rakam_raptor
 presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-presto.metastore.jdbc.max_connection=5
+presto.metastore.jdbc.max-connection=5
 
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
@@ -21,13 +21,13 @@ plugin.user.enabled=true
 plugin.user.storage=postgresql
 #plugin.user.mailbox.enable=false
 #plugin.user.mailbox.adapter=postgresql
-plugin.user.storage.identifier_column=id
+plugin.user.storage.identifier-column=id
 #plugin.user.actions=email
 
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-store.adapter.postgresql.max_connection=5
+store.adapter.postgresql.max-connection=5
 <% end -%>
 
 real-time.enabled=true
@@ -54,7 +54,7 @@ presto.streaming.port=5466
 
 log.output-file=rakam-server/logs/app.log
 log.enable-console=false
-plugin.user.enable_user_mapping=true
+plugin.user.enable-user-mapping=true
 
 secret-key=6NRB8NRBZ6QNV6KZ6LUOHLKA9IV1KFHQOW<%= node["lock-key"] %>TRHJ<%= node["opsworks"]["stack"]["id"] %>
 lock-key=<%= node["lock-key"] %>

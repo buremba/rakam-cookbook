@@ -2,14 +2,13 @@ if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enabl
   include_recipe "nodejs::nodejs_from_binary"
   node.default['nodejs']['version'] = '5.9.0'
 
-  template "/home/webapp/.ssh/rakam_ui" do
-    source "keys/ui"
-    owner "webapp"
-    group "webapp"
-    mode 0600
+  bash "add ssh keys for ui" do
+    code <<-EOH
+      su webapp -l -c 'echo "#{node['rakam-ui-ssh-key']}" | tr , "\n" > /home/webapp/.ssh/rakam_ui'
+    EOH
   end
   
-include_recipe "rakam::update_ui"
+  include_recipe "rakam::update_ui"
 else
   log "Ignoring BI module"
 end
