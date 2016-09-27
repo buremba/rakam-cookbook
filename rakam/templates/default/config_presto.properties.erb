@@ -4,7 +4,6 @@ presto.cold-storage-connector=rakam_raptor
 presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-presto.metastore.jdbc.max-connection=5
 
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
@@ -27,7 +26,6 @@ plugin.user.storage.identifier-column=id
 store.adapter.postgresql.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
-store.adapter.postgresql.max-connection=5
 <% end -%>
 
 real-time.enabled=true
