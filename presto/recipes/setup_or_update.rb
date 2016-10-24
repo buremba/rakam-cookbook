@@ -88,18 +88,6 @@ template "/home/webapp/presto/etc/catalog/rakam_raptor.properties" do
   mode 0755
 end
 
-
-if node['modules'].include?('user')
-  template "/home/webapp/presto/etc/catalog/user.properties" do
-    source "catalog/user.properties.erb"
-    owner "webapp"
-    group "webapp"
-    mode 0755
-  end
-else
-  log "Ignoring User module"
-end
-
 template "/home/webapp/presto/etc/catalog/streaming.properties" do
   source "catalog/streaming.properties.erb"
   owner "webapp"
