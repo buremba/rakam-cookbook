@@ -73,6 +73,13 @@ template "/home/webapp/presto/etc/log.properties" do
   mode 0755
 end
 
+template "/home/webapp/presto/etc/catalog/external.properties" do
+  source "catalog/external.properties.erb"
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
+
 
 template "/home/webapp/presto/etc/catalog/middleware.properties" do
   source "catalog/middleware.properties.erb"
