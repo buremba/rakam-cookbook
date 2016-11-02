@@ -1,10 +1,9 @@
 default['environment'] = 'production'
-default['presto_version'] = '0.151'
+default['presto_version'] = '0.155'
 default['data-dir'] = '/mnt/presto'
-default['rakam_streaming_checkout'] = 'HEAD'
-default['rakam_raptor_checkout'] = 'HEAD'
+default['rakam_presto_streaming_version'] = ''
+default['rakam_presto_raptor_version'] = ''
 default['jvm-properties'] = ''
-
 
 default['s3']['streaming'] = 'rakam-streaming'
 default['s3']['bulk'] = 'rakam-bulk'

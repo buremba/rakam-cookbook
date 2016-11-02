@@ -48,7 +48,7 @@ template "/home/webapp/presto/etc/logging.properties" do
   source "logging.properties.erb"
   owner "webapp"
   group "webapp"
-  variables ({ :version => `bash -c "curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version'"` })
+  variables ({ :version => `bash -c "if [ -z ${PRESTO_RAKAM_STREAMING_VERSION+x} ]; then curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version'; else echo $PRESTO_RAKAM_STREAMING_VERSION; fi"` })
   mode 0644
 end
 
@@ -103,6 +103,7 @@ template "/home/webapp/presto/etc/catalog/streaming.properties" do
 end
 
 presto_download_address = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/#{node['presto_version']}/presto-server-#{node['presto_version']}.tar.gz"
+presto_main_patch_download_address = "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-main/#{node['presto_version']}/presto-main-#{node['presto_version']}.jar"
 
 bash "download-and-setup-presto" do
   code <<-EOH
@@ -111,8 +112,8 @@ bash "download-and-setup-presto" do
     su webapp -l -c 'tar -zxvf presto-server-#{node['presto_version']}.tar.gz'
     su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-#{node['presto_version']}/bin/ presto/'
     su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-#{node['presto_version']}/lib/ presto/'
-    su webapp -l -c 'STREAMING_VERSION="$(curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version')" && wget -nc "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-rakam-streaming/${STREAMING_VERSION}/presto-rakam-streaming-${STREAMING_VERSION}.zip" && unzip -o "presto-rakam-streaming-${STREAMING_VERSION}.zip" && rm -rf ./presto/plugin/presto-rakam-streaming && mkdir ./presto/plugin/presto-rakam-streaming && mv presto-rakam-streaming-${STREAMING_VERSION}/* ./presto/plugin/presto-rakam-streaming; test ${PIPESTATUS[0]} -eq 0'
-    su webapp -l -c 'if cd presto-rakam-raptor; git checkout #{node['rakam_raptor_checkout']}; then git pull; else git clone https://github.com/buremba/presto-rakam-raptor.git && cd presto-rakam-raptor; fi'
-    su webapp -l -c 'cd presto-rakam-raptor; mvn clean install -DskipTests -Dair.check.skip-checkstyle=true -Dair.check.skip-license=true; rm -r ../presto/plugin/presto-rakam-raptor; mv target/presto-rakam-*/ ../presto/plugin/presto-rakam-raptor'
+    su webapp -l -c 'wget -q #{presto_main_patch_download_address} -O presto/lib/presto-main-#{node['presto_version']}.jar'
+    su webapp -l -c 'STREAMING_VERSION="$(if [ -z #{node['rakam_presto_streaming_version']} ]; then curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-streaming | jq -r '.latest_version'; else echo #{node['rakam_presto_streaming_version']}; fi)" && wget -nc "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-rakam-streaming/${STREAMING_VERSION}/presto-rakam-streaming-${STREAMING_VERSION}.zip" && unzip -o "presto-rakam-streaming-${STREAMING_VERSION}.zip" && rm -rf ./presto/plugin/presto-rakam-streaming && mkdir ./presto/plugin/presto-rakam-streaming && mv presto-rakam-streaming-${STREAMING_VERSION}/* ./presto/plugin/presto-rakam-streaming; test ${PIPESTATUS[0]} -eq 0'
+    su webapp -l -c 'RAPTOR_VERSION="$(if [ -z #{node['rakam_presto_raptor_version']} ]; then curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-raptor | jq -r '.latest_version'; else echo #{node['rakam_presto_raptor_version']}; fi)" && wget -nc "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-rakam-raptor/${RAPTOR_VERSION}/presto-rakam-raptor-${RAPTOR_VERSION}.zip" && unzip -o "presto-rakam-raptor-${RAPTOR_VERSION}.zip" && rm -rf ./presto/plugin/presto-rakam-raptor && mkdir ./presto/plugin/presto-rakam-raptor && mv presto-rakam-raptor-${RAPTOR_VERSION}/* ./presto/plugin/presto-rakam-raptor; test ${PIPESTATUS[0]} -eq 0'
   EOH
 end
