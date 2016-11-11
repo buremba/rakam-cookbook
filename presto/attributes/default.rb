@@ -1,5 +1,5 @@
 default['environment'] = 'production'
-default['presto_version'] = '0.155'
+default['presto_version'] = '0.156'
 default['data-dir'] = '/mnt/presto'
 default['rakam_presto_streaming_version'] = ''
 default['rakam_presto_raptor_version'] = ''
