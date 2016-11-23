@@ -27,6 +27,7 @@ discovery.uri=http://<%= (`dig +short -x #{node['presto-coordinator-elastic-ip']
 exchange.http-client.max-connections=1000
 exchange.http-client.max-connections-per-server=1000
 exchange.http-client.connect-timeout=1m
+exchange.http-client.request-timeout=120s
 exchange.http-client.idle-timeout=1m
 
 query.client.timeout=1m
