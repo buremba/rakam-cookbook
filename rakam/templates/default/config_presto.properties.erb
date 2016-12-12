@@ -16,6 +16,7 @@ event.store=kinesis
 event.store.kinesis.stream=<%= node["kinesis"] %>
 custom-data-source.enabled=true
 tasks.enable=true
+js-event-mapper.enabled=true
 
 <% if node['modules'].include?('user') -%>
 plugin.user.enabled=true
