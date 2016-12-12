@@ -14,6 +14,7 @@ ui.google-login-client-id=501662626729-hsomia0k9di5cm0m40govgja5l3leef9.apps.goo
 
 event.store=kinesis
 event.store.kinesis.stream=<%= node["kinesis"] %>
+custom-data-source.enabled=true
 
 <% if node['modules'].include?('user') -%>
 plugin.user.enabled=true
