@@ -1,6 +1,7 @@
 source "https://supermarket.chef.io"
 
 cookbook 'build-essential', '= 3.2.0'
+cookbook 'homebrew', '= 2.1.2'
 cookbook 'ohai', '= 3.0.1'
 cookbook 'yum-epel', '= 0.7.1'
 cookbook 'java', '~> 1.36.0'
