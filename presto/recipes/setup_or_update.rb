@@ -52,6 +52,13 @@ template "/home/webapp/presto/etc/logging.properties" do
   mode 0644
 end
 
+template "/home/webapp/presto-server-heartbeat" do
+  source "presto-server-heartbeat.sh"
+  owner "webapp"
+  group "webapp"
+  mode 0775
+end
+
 template "/home/webapp/presto/etc/node.properties" do
   source "node.properties.erb"
   owner "webapp"
