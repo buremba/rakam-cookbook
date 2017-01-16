@@ -40,7 +40,7 @@ curl --data "{
 while true
 do 
 if ! pgrep presto-server; then
-    capture_error "Unable to execute the command" && /home/webapp/presto/bin/launcher start
+    /home/webapp/presto/bin/launcher start
 fi
  sleep 5
 done
