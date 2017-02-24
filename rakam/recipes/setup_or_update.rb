@@ -4,7 +4,7 @@ if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enabl
 
   bash "add ssh keys for ui" do
     code <<-EOH
-      su webapp -l -c 'echo "#{node['rakam-ui-ssh-key']}" | tr , "\n" > /home/webapp/.ssh/rakam_ui'
+      su webapp -l -c 'echo "#{node['rakam-ui-ssh-key']}" | tr , "\n" > /home/webapp/.ssh/rakam_ui && chmod 600 /home/webapp/.ssh/rakam_ui'
     EOH
   end
   
