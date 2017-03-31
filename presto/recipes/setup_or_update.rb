@@ -44,6 +44,13 @@ template "/home/webapp/presto/etc/config.properties" do
   mode 0755
 end
 
+template "/home/webapp/presto/etc/event-listener.properties" do
+  source "event-listener.properties.erb"
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
+
 template "/home/webapp/presto/etc/logging.properties" do
   source "logging.properties.erb"
   owner "webapp"
