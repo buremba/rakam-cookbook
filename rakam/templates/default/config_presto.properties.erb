@@ -5,6 +5,10 @@ presto.metastore.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instan
 presto.metastore.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
 presto.metastore.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 
+report.metadata.store.jdbc.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][0]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>
+report.metadata.store.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>
+report.metadata.store.jdbc.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
+
 <% if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true' -%>
 ui.metadata.jdbc.url=jdbc:postgresql://<%= node["opsworks"]["stack"]["rds_instances"][1]["address"] %>:<%= node["opsworks"]["stack"]["rds_instances"][1]["port"] %>/<%= node["opsworks"]["stack"]["rds_instances"][1]["db_name"] %>
 ui.metadata.jdbc.username=<%= node["opsworks"]["stack"]["rds_instances"][1]["master_username"] %>
