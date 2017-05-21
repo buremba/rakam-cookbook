@@ -124,23 +124,8 @@ template "/home/webapp/presto/etc/catalog/external.properties" do
   mode 0755
 end
 
-
-template "/home/webapp/presto/etc/catalog/middleware.properties" do
-  source "presto/catalog/middleware.properties.erb"
-  owner "webapp"
-  group "webapp"
-  mode 0755
-end
-
 template "/home/webapp/presto/etc/catalog/rakam_raptor.properties" do
   source "presto/catalog/rakam_raptor.properties.erb"
-  owner "webapp"
-  group "webapp"
-  mode 0755
-end
-
-template "/home/webapp/presto/etc/catalog/streaming.properties" do
-  source "presto/catalog/streaming.properties.erb"
   owner "webapp"
   group "webapp"
   mode 0755
