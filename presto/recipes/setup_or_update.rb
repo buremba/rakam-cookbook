@@ -2,8 +2,8 @@
 bash "clean-setup" do
   code <<-EOH
     cd /home/webapp
-    su webapp -l -c 'rm -r ./presto'
-    su webapp -l -c 'rm -r ./presto-streamer'
+    su webapp -l -c 'rm -rf ./presto'
+    su webapp -l -c 'rm -rf ./presto-streamer'
   EOH
 end
 
