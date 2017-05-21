@@ -138,7 +138,7 @@ bash "download-and-setup-presto" do
   code <<-EOH
     cd /home/webapp
     su webapp -l -c 'wget -N #{presto_download_address}'
-    su webapp -l -c 'tar -zxvf latest.tar.gz && mv collector-*/* ./presto-streamer/ && rm -r collector-*'
+    su webapp -l -c 'tar -zxvf latest.tar.gz && mv collector-*/* ./presto-streamer/ && rm -r collector-* && rm latest.tar.gz'
     su webapp -l -c 'wget -N #{presto_streamer_download_address}'
     su webapp -l -c 'tar -zxvf presto-server-#{node['presto_version']}.tar.gz'
     su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-#{node['presto_version']}/bin/ presto/'

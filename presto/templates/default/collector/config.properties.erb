@@ -1,6 +1,6 @@
 stream.source=kinesis
 kinesis.stream=<%= node["kinesis"] %>
-kinesis.consumer-<%= node["dynamodb_consumer_table"] %>
+kinesis.consumer-dynamodb-table=<%= node["dynamodb_consumer_table"] %>
 aws.region=<%= node["opsworks"]["instance"]["region"] %>
 aws.s3-bulk-bucket=<%= node["s3"]["bulk"] %>
 
