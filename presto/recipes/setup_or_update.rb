@@ -146,3 +146,13 @@ bash "download-and-setup-presto" do
     su webapp -l -c 'RAPTOR_VERSION="$(if [ -z #{node['rakam_presto_raptor_version']} ]; then curl -s https://api.bintray.com/packages/buremba/maven/presto-rakam-raptor | jq -r '.latest_version'; else echo #{node['rakam_presto_raptor_version']}; fi)" && wget -nc "https://dl.bintray.com/buremba/maven/com/facebook/presto/presto-rakam-raptor/${RAPTOR_VERSION}/presto-rakam-raptor-${RAPTOR_VERSION}.zip" && unzip -o "presto-rakam-raptor-${RAPTOR_VERSION}.zip" && rm -rf ./presto/plugin/presto-rakam-raptor && mkdir ./presto/plugin/presto-rakam-raptor && mv presto-rakam-raptor-${RAPTOR_VERSION}/* ./presto/plugin/presto-rakam-raptor; test ${PIPESTATUS[0]} -eq 0'
   EOH
 end
+
+bash "download-and-setup-presto-collector" do
+  code <<-EOH
+    cd /home/webapp
+    su webapp -l -c 'wget -N #{presto_streamer_download_address}'
+    su webapp -l -c 'tar -zxvf latest.tar.gz'
+    su webapp -l -c 'mv collector-*/* ./presto-streamer/'
+    su webapp -l -c 'rm -r collector-* && rm latest.tar.gz'
+  EOH
+end
