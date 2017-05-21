@@ -136,6 +136,14 @@ presto_streamer_download_address = "https://s3.amazonaws.com/rakam-private-code/
 bash "download-and-setup-presto" do
   code <<-EOH
     cd /home/webapp
+    su webapp -l -c 'rm -r ./presto'
+    su webapp -l -c 'rm -r ./presto-streamer'
+  EOH
+end
+
+bash "download-and-setup-presto" do
+  code <<-EOH
+    cd /home/webapp
     su webapp -l -c 'wget -N #{presto_download_address}'
     su webapp -l -c 'tar -zxvf latest.tar.gz && mv collector-*/* ./presto-streamer/ && rm -r collector-* && rm latest.tar.gz'
     su webapp -l -c 'wget -N #{presto_streamer_download_address}'
