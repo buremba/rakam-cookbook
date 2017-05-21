@@ -1,7 +1,10 @@
-directory "/home/webapp/presto" do
-  owner "webapp"
-  group "webapp"
-  mode 0755
+
+bash "clean-setup" do
+  code <<-EOH
+    cd /home/webapp
+    su webapp -l -c 'rm -r ./presto'
+    su webapp -l -c 'rm -r ./presto-streamer'
+  EOH
 end
 
 directory "/home/webapp/presto-streamer" do
@@ -40,6 +43,12 @@ template "/home/webapp/presto-collector-heartbeat" do
 end
 
 
+
+directory "/home/webapp/presto" do
+  owner "webapp"
+  group "webapp"
+  mode 0755
+end
 directory "/home/webapp/presto/plugin" do
   owner "webapp"
   group "webapp"
@@ -132,14 +141,6 @@ end
 
 presto_download_address = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/#{node['presto_version']}/presto-server-#{node['presto_version']}.tar.gz"
 presto_streamer_download_address = "https://s3.amazonaws.com/rakam-private-code/rakam-presto-builds/#{node['presto_version']}/latest.tar.gz"
-
-bash "download-and-setup-presto" do
-  code <<-EOH
-    cd /home/webapp
-    su webapp -l -c 'rm -r ./presto'
-    su webapp -l -c 'rm -r ./presto-streamer'
-  EOH
-end
 
 bash "download-and-setup-presto" do
   code <<-EOH
