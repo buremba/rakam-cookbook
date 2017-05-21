@@ -8,7 +8,7 @@ service "presto" do
   action :nothing
 end
 
-service "presto-collector" do
+service "presto-streamer" do
   supports :status => true, :stop => true, :start => true, :restart => true
   init_command "/home/webapp/presto-streamer"
   start_command "su webapp -l -c 'cd /home/webapp/presto-streamer && bin/launcher start'"
