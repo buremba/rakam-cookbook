@@ -32,6 +32,12 @@ template "/home/webapp/presto-streamer/etc/log.properties" do
   group "webapp"
   mode 0755
 end
+template "/home/webapp/presto-collector-heartbeat" do
+  source "collector/presto-collector-heartbeat.sh"
+  owner "webapp"
+  group "webapp"
+  mode 0775
+end
 
 
 directory "/home/webapp/presto/plugin" do
@@ -69,13 +75,6 @@ end
 
 template "/home/webapp/presto/etc/config.properties" do
   source "presto/config.properties.erb"
-  owner "webapp"
-  group "webapp"
-  mode 0755
-end
-
-template "/home/webapp/presto/etc/event-listener.properties" do
-  source "presto/event-listener.properties.erb"
   owner "webapp"
   group "webapp"
   mode 0755
