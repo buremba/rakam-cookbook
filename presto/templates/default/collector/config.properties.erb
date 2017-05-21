@@ -1,0 +1,9 @@
+stream.source=kinesis
+kinesis.stream=<%= node["kinesis"] %>
+kinesis.consumer-<%= node["dynamodb_consumer_table"] %>
+aws.region=<%= node["opsworks"]["instance"]["region"] %>
+aws.s3-bulk-bucket=<%= node["s3"]["bulk"] %>
+
+raptor.metadata.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>?user=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>&password=<%= node["deploy"]["presto"]['environment_variables']["DB_PASSWORD"] %>
+raptor.node.id=<%= node["opsworks"]["instance"]["id"] %>
+raptor.storage.data-directory=<%= node["data-dir"] %>/var/data
