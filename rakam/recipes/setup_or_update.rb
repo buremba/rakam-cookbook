@@ -16,7 +16,7 @@ end
 bash "download and build package" do
   code <<-EOH
     cd /home/webapp
-    su webapp -l -c 'if cd rakam; then git pull; else git clone https://github.com/buremba/rakam.git && cd rakam; fi; git checkout #{node['checkout']}'
+    su webapp -l -c 'if cd rakam; then git pull origin master; else git clone https://github.com/buremba/rakam.git && cd rakam; fi; git checkout #{node['checkout']}'
     su webapp -l -c 'cd rakam; mvn clean install -DskipTests && rm -rf ../rakam-server && mv rakam/target/*-bundle/rakam-* ../rakam-server'
   EOH
 end
