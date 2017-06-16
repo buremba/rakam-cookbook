@@ -35,7 +35,6 @@ store.adapter.postgresql.username=<%= node["opsworks"]["stack"]["rds_instances"]
 store.adapter.postgresql.password=<%= node["deploy"]["rakam"]['environment_variables']["DB_PASSWORD"] %>
 <% end -%>
 
-real-time.enabled=true
 event-explorer.enabled=true
 
 user.funnel-analysis.enabled=true
