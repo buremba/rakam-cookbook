@@ -2,6 +2,12 @@ include_recipe 'java::oracle'
 
 include_recipe 'ark::default'
 
+bash "remove old java" do
+  code <<-EOH
+    sudo yum remove -y java-1.7.0-openjdk
+  EOH
+end
+
 ark 'maven' do
   url             'http://apache.mirrors.tds.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz'
   checksum        '6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82'
