@@ -11,3 +11,6 @@ metadata.db.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["
 metadata.db.connections.max=200
 
 storage.data-directory=var/data
+
+cache.data-size=2GB
+cache.method=memory_mapped
