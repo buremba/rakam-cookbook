@@ -42,15 +42,12 @@ query.max-memory-per-node=2GB
 query.max-memory-per-node=1GB
 <% end -%>
 
-optimizer.dictionary-aggregation=true
 exchange.compression-enabled=true
-optimizer.enable-intermediate-aggregations=true
 optimizer.optimize-mixed-distinct-aggregations=true
 #experimental.spill-enabled=true
 #experimental.spiller-spill-path=/tmp/presto-spill
 optimizer.optimize-metadata-queries=true
 colocated-joins-enabled=true
-code-cache-collection-threshold=70
 
 presto.version=<%= node['presto_version'] %>
 #distributed-joins-enabled=true
