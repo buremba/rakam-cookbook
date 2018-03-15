@@ -1,9 +1,8 @@
 -server
--Xmx1G
+-Xmx2G
 -XX:+UseG1GC
 -XX:+UseGCOverheadLimit
 -XX:+ExplicitGCInvokesConcurrent
--XX:+HeapDumpOnOutOfMemoryError
 -XX:OnOutOfMemoryError=kill -9 %p
 -Djava.util.logging.config.file=/home/webapp/presto/etc/logging.properties
 <%= node["jvm-properties-consumer"] %>
