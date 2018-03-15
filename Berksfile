@@ -3,7 +3,6 @@ source "https://supermarket.chef.io"
 cookbook 'build-essential', '= 3.2.0'
 cookbook 'windows', '= 1.44.3'
 cookbook 'homebrew', '= 2.1.2'
-cookbook 'ming', '=1.2.3'
 cookbook 'ohai', '= 3.0.1'
 cookbook 'yum-epel', '= 0.7.1'
 cookbook 'yum-repoforge', '~> 1.0.0'
