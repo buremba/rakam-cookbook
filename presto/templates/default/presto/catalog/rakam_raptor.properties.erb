@@ -8,7 +8,7 @@ aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
 metadata.db.type=mysql
 metadata.db.url=jdbc:mysql://<%= node["opsworks"]["stack"]["rds_instances"][0]["address"] %>/<%= node["opsworks"]["stack"]["rds_instances"][0]["db_name"] %>?user=<%= node["opsworks"]["stack"]["rds_instances"][0]["master_username"] %>&password=<%= node["deploy"]["presto"]['environment_variables']["DB_PASSWORD"] %>
-#metadata.db.connections.max=200
+metadata.db.connections.max=100
 
 storage.data-directory=var/data
 
