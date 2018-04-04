@@ -1,8 +1,18 @@
 -server
--Xmx2G
+<% if [""i3.2xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+-Xmx50G
+<% elsif ["c3.4xlarge", "i3.xlarge", "m3.2xlarge", "m4.2xlarge", "i3.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+-Xmx24G
+<% elsif ["c3.2xlarge", "m3.xlarge", "m4.xlarge", "i3.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+-Xmx10G
+<% elsif ["c3.xlarge", "m3.large", "m4.large", "t2.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
+-Xmx6G
+<% else -%>
+-Xmx3G
+<% end -%>
 -XX:+UseG1GC
 -XX:+UseGCOverheadLimit
 -XX:+ExplicitGCInvokesConcurrent
 -XX:OnOutOfMemoryError=kill -9 %p
 -Djava.util.logging.config.file=/home/webapp/presto/etc/logging.properties
-<%= node["jvm-properties-consumer"] %>
+<%= node["jvm-properties"] %>
