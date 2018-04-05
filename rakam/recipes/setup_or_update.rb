@@ -21,6 +21,13 @@ bash "download and build package" do
   EOH
 end
 
+template "/home/webapp/rakam-server-heartbeat" do
+  source "rakam/rakam-server-heartbeat.sh"
+  owner "webapp"
+  group "webapp"
+  mode 0775
+end
+
 template "/home/webapp/rakam-server/etc/config.properties" do
   source "config_#{node['deployment_type']}.properties.erb"
   owner "webapp"
