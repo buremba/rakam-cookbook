@@ -4,6 +4,6 @@ end
 
 bash "run program" do
   code <<-EOH
-    su webapp -l -c '(/home/webapp/rakam-server/bin/launcher start) && (killall -9 rakam-server-heartbeat || true) && (../rakam-server-heartbeat &)'
+    su webapp -l -c 'cd /home/webapp/rakam-server && (bin/launcher start) && (killall -9 rakam-server-heartbeat || true) && (../rakam-server-heartbeat &)'
   EOH
 end
