@@ -6,7 +6,7 @@
 <% elsif ["c3.2xlarge", "m3.xlarge", "m4.xlarge", "i3.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx10G
 <% elsif ["c3.xlarge", "m3.large", "m4.large", "t2.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
--Xmx6G
+-Xmx7G
 <% else -%>
 -Xmx3G
 <% end -%>
