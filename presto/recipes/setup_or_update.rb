@@ -9,7 +9,7 @@ end
 bash "setup-instance-store" do
   code <<-EOH
     cd /home/webapp
-    su webapp -l -c 'if [[ #{node["opsworks"]["instance"]["instance_type"]} == i3* ]]; then mkdir -p /data && mkfs.ext4 /dev/nvme0n1 && mount -t ext4 /dev/nvme0n1 /data; fi'
+    su webapp -l -c 'if [[ #{node["opsworks"]["instance"]["instance_type"]} == i3* ]]; then sudo mkdir -p /data && sudo mkfs.ext4 /dev/nvme0n1 && sudo mount -t ext4 /dev/nvme0n1 /data; fi'
   EOH
 end
 
