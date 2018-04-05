@@ -22,7 +22,7 @@ bash "download and build package" do
 end
 
 template "/home/webapp/rakam-server-heartbeat" do
-  source "rakam/rakam-server-heartbeat.sh"
+  source "rakam-server-heartbeat.sh"
   owner "webapp"
   group "webapp"
   mode 0775
