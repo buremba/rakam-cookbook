@@ -1,9 +1,9 @@
 <% if ["i3.2xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
--Xmx50G
+-Xmx55G
 <% elsif ["c3.4xlarge", "i3.xlarge", "m3.2xlarge", "m4.2xlarge", "i3.xlarge"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
--Xmx24G
+-Xmx27G
 <% elsif ["c3.2xlarge", "m3.xlarge", "m4.xlarge", "i3.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
--Xmx10G
+-Xmx13G
 <% elsif ["c3.xlarge", "m3.large", "m4.large", "t2.large"].include?(node["opsworks"]["instance"]["instance_type"]) -%>
 -Xmx7G
 <% else -%>
