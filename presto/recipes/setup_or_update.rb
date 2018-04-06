@@ -8,7 +8,7 @@ end
 
 bash "setup-instance-store" do
   code <<-EOH
-    if [[ #{node["opsworks"]["instance"]["instance_type"]} == i3* ]]; then 
+    if [[ #{node["opsworks"]["instance"]["instance_type"]} == i3* ]] && [ ! -d /mnt ]; then 
         (rm -rf /mnt || true) && mkdir -p /mnt && mkfs.ext4 /dev/nvme0n1 && mount -t ext4 /dev/nvme0n1 /mnt; 
     fi
   EOH
