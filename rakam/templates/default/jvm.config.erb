@@ -9,6 +9,6 @@
 <% else -%>
 -Xmx3G
 <% end -%>
--XX:OnOutOfMemoryError="kill -9 %p"
+-XX:+ExitOnOutOfMemoryError
 -Djava.util.logging.config.file=/home/webapp/rakam-server/etc/logging.properties
 <%= node["jvm-properties"] %>
