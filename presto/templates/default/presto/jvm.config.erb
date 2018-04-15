@@ -13,6 +13,6 @@
 -XX:+UseG1GC
 -XX:+UseGCOverheadLimit
 -XX:+ExplicitGCInvokesConcurrent
--XX:OnOutOfMemoryError=kill -9 %p
+-XX:+ExitOnOutOfMemoryError
 -Djava.util.logging.config.file=/home/webapp/presto/etc/logging.properties
 <%= node["jvm-properties"] %>
