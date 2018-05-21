@@ -114,7 +114,7 @@ presto_download_address = "https://repo1.maven.org/maven2/com/facebook/presto/pr
 bash "download-and-setup-presto" do
   code <<-EOH
     cd /home/webapp
-    su webapp -l -c 'wget -N #{node["opsworks"]["instance"]["instance_type"]}'
+    su webapp -l -c 'wget -N #{presto_download_address}'
     su webapp -l -c 'tar -zxvf presto-server-#{node['presto_version']}.tar.gz'
     su webapp -l -c 'rm -rf presto/bin && cp -r presto-server-#{node['presto_version']}/bin/ presto/'
     su webapp -l -c 'rm -rf presto/lib && cp -r presto-server-#{node['presto_version']}/lib/ presto/'
