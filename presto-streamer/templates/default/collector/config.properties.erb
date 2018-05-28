@@ -10,7 +10,7 @@ raptor.node.id=<%= node["opsworks"]["instance"]["id"] %>
 raptor.aws.s3-bucket=<%= node["s3"]["batch"] %>
 raptor.aws.region=<%= node["opsworks"]["instance"]["region"] %>
 
-<% if defined?(node['presto-streamer-config']) -%>
+<% if not defined?(node['presto-streamer-config']).nil? -%>
 <% node['presto-streamer-config'].each do |key, value| -%>
 <%= key %>=<%= value %>
 <% end -%>
