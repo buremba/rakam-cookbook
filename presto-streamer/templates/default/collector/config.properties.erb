@@ -9,3 +9,9 @@ raptor.node.id=<%= node["opsworks"]["instance"]["id"] %>
 #raptor.storage.data-directory=<%= node["data-dir"] %>/var/data
 raptor.aws.s3-bucket=<%= node["s3"]["batch"] %>
 raptor.aws.region=<%= node["opsworks"]["instance"]["region"] %>
+
+<% if defined?(node['presto-streamer-config']) -%>
+<% node['presto-streamer-config'].each do |key, value| -%>
+<%= key %>=<%= value %>
+<% end -%>
+<% end -%>
