@@ -1,7 +1,4 @@
 if defined?(node['rakam-config']['ui.enable']) && node['rakam-config']['ui.enable'] == 'true'
-  include_recipe "nodejs::nodejs_from_binary"
-  node.default['nodejs']['version'] = '5.9.0'
-
   bash "add ssh keys for ui" do
     code <<-EOH
       su webapp -l -c 'echo "#{node['rakam-ui-ssh-key']}" | tr , "\n" > /home/webapp/.ssh/rakam_ui && chmod 600 /home/webapp/.ssh/rakam_ui'
