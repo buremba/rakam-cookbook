@@ -1,5 +1,6 @@
 source "https://supermarket.chef.io"
 
+cookbook 'seven_zip', '= 2.0.2'
 cookbook 'build-essential', '= 3.2.0'
 cookbook 'windows', '= 1.44.3'
 cookbook 'homebrew', '= 2.1.2'
