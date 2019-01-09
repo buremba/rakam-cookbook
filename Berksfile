@@ -1,5 +1,6 @@
 source "https://supermarket.chef.io"
 
+cookbook 'seven_zip', '= 2.0.2'
 cookbook 'build-essential', '= 3.2.0'
 cookbook 'windows', '= 1.44.3'
 cookbook 'homebrew', '= 2.1.2'
@@ -12,7 +13,6 @@ cookbook 'nodejs', '= 2.4.4'
 cookbook 'ark', '= 0.9.0'
 cookbook 'apt', '= 3.0.0'
 cookbook 'yum', '= 3.13.0'
-cookbook 'seven_zip', '= 2.0.2'
 cookbook 'generic', path: './generic'
 cookbook 'rakam', path: './rakam'
 cookbook 'presto', path: './presto'
