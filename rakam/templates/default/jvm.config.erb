@@ -1,4 +1,8 @@
-<% if node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'r4.large' -%>
+<% if node["opsworks"]["instance"]["instance_type"] == 'r4.xlarge' -%>
+-Xmx24G
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'r4.large' -%>
+-Xmx12G
+<% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.2xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.xlarge' -%>
 -Xmx8G
 <% elsif node["opsworks"]["instance"]["instance_type"] == 'c3.xlarge' || node["opsworks"]["instance"]["instance_type"] == 'm3.large' || node["opsworks"]["instance"]["instance_type"] == 't2.large'  -%>
 -Xmx4G
